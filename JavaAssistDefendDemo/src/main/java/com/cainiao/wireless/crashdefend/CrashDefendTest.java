@@ -12,9 +12,6 @@ public class CrashDefendTest {
         ClassPool pool = ClassPool.getDefault();
         CtClass ctClass = pool.get("test.RunnableTest");
         addTryCatch(ctClass, pool);
-
-
-
         addTryCatch(pool.get("test.RunnableTest$1"), pool);
 
 
