@@ -34,30 +34,21 @@ public class CrashDefendTest {
                 continue;
             }
 
+            //私有方法和构造方法不做处理
+            if(methodInfo.isConstructor()){
+                CtConstructor ctConstructor = (CtConstructor)ctBehavior;
+                if(isPrivateConstructor(ctConstructor)){
+                    continue;
+                }
+            }
+            //私有方法不做处理
             if(methodInfo.isMethod()){
                 CtMethod ctMethod = (CtMethod)ctBehavior;
                 if(isPrivateMethod(ctMethod)){
                     continue;
                 }
-
             }
-
-            System.out.println("love " + methodInfo.getName() + " " + ctBehavior.getSignature()
-            +"  " + ctClass.getName());
-            if(methodInfo.isConstructor()){
-                 continue;
-            }
-            ctBehavior.addCatch("{}", pool.get("java.lang.Throwable"));
-            /**
-            if(methodInfo.isMethod()){
-                CtMethod method = (CtMethod)ctBehavior;
-
-                // method.insertBefore("try {");
-                //method.insertAt(method, )
-                //method.insertAfter(" }catch (Exception e){}");
-
-            }*/
-            System.out.println(ctBehavior.getMethodInfo().getName());
+            ctBehavior.addCatch("{com.cainiao.wireless.crashdefend.CrashDefendSdk.getInstance().onCatch($e);}", pool.get("java.lang.Throwable"));
         }
         ctClass.writeFile();
     }
@@ -71,6 +62,14 @@ public class CrashDefendTest {
 
     private static boolean isPrivateMethod(CtMethod ctMethod){
         if(AccessFlag.isPrivate(ctMethod.getModifiers())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private static boolean isPrivateConstructor(CtConstructor constructor){
+        if(AccessFlag.isPrivate(constructor.getModifiers())){
             return true;
         }else{
             return false;
