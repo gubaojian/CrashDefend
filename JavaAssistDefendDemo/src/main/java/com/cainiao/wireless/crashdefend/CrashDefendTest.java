@@ -41,12 +41,20 @@ public class CrashDefendTest {
                     continue;
                 }
             }
-            //私有方法不做处理
+
+            //私有方法不做处理, 带返回值的方法不做处理。
             if(methodInfo.isMethod()){
                 CtMethod ctMethod = (CtMethod)ctBehavior;
                 if(isPrivateMethod(ctMethod)){
                     continue;
                 }
+                //返回值类型, 无返回值类型的处理
+                CtClass returnType =  ctMethod.getReturnType();
+                if(!isMethodReturnVoid(returnType.getName())){
+                    continue;
+                }
+                //FIXME 带有返回值的处理方式
+                System.out.println("return type " + returnType.getName());
             }
             ctBehavior.addCatch("{com.cainiao.wireless.crashdefend.CrashDefendSdk.getInstance().onCatch($e);}", pool.get("java.lang.Throwable"));
         }
@@ -66,6 +74,15 @@ public class CrashDefendTest {
         }else{
             return false;
         }
+    }
+
+    private static boolean isMethodReturnVoid(String returnType){
+        if(Constants.VOID.equals(returnType)){
+            return true;
+        }else if(Constants.LANG_VOID.equals(returnType)){
+            return true;
+        }
+        return  false;
     }
 
     private static boolean isPrivateConstructor(CtConstructor constructor){
