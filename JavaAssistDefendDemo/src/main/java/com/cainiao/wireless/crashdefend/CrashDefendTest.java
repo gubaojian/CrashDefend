@@ -1,6 +1,7 @@
 package com.cainiao.wireless.crashdefend;
 
 import javassist.*;
+import javassist.bytecode.AccessFlag;
 import javassist.bytecode.MethodInfo;
 
 import java.io.IOException;
@@ -22,17 +23,29 @@ public class CrashDefendTest {
     public static  void addTryCatch(CtClass ctClass, ClassPool pool) throws NotFoundException, CannotCompileException, IOException {
         for (CtBehavior ctBehavior : ctClass.getDeclaredBehaviors()) {
             MethodInfo methodInfo = ctBehavior.getMethodInfo();
+
+            //空方法不做处理
             if(ctBehavior.isEmpty()){
                 continue;
             }
+
+            //匿名内部类做处理
             if(methodInfo.isConstructor() && isAnonymousClass(ctClass)){
                 continue;
+            }
+
+            if(methodInfo.isMethod()){
+                CtMethod ctMethod = (CtMethod)ctBehavior;
+                if(isPrivateMethod(ctMethod)){
+                    continue;
+                }
+
             }
 
             System.out.println("love " + methodInfo.getName() + " " + ctBehavior.getSignature()
             +"  " + ctClass.getName());
             if(methodInfo.isConstructor()){
-                //continue;
+                 continue;
             }
             ctBehavior.addCatch("{}", pool.get("java.lang.Throwable"));
             /**
@@ -54,4 +67,15 @@ public class CrashDefendTest {
         String anonyClassChars = "$";
         return  ctClass.getName().indexOf(anonyClassChars) >= 0;
     }
+
+
+    private static boolean isPrivateMethod(CtMethod ctMethod){
+        if(AccessFlag.isPrivate(ctMethod.getModifiers())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }
