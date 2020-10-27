@@ -15,7 +15,10 @@ public class CrashDefendSdk {
         return mCrashDefendSdk;
     }
 
-    public void onCatch(Throwable e){
+
+
+    
+    public static void onCatch(Throwable e){
 
     }
 }
