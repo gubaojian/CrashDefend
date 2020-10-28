@@ -17,7 +17,7 @@ public class CrashDefendSdk {
 
 
 
-    
+
     public static void onCatch(Throwable e){
 
     }

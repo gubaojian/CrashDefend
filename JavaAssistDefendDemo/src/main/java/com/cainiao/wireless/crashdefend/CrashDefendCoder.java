@@ -11,45 +11,31 @@ import java.util.List;
 /**
  * 安全主动防护处理类
  * */
-public class CrashDefendCompiler {
-
-    public static List<String> excludeDefendSubClasses = new ArrayList<String>();
-    public static List<String> excludeDefendPackages = new ArrayList<String>();
-    public static List<String> defendPackages = new ArrayList<String>();
-    public static List<String> defendClasses = new ArrayList<String>();
+public class CrashDefendCoder {
 
 
-    public static boolean configOnlyVoid = false;
-
-    //初始化默认配置
-    static {
-        excludeDefendSubClasses.add("java.io.Serializable");
-        excludeDefendSubClasses.add("java.io.Externalizable");
-        excludeDefendSubClasses.add("android.os.Parcelable");
-        excludeDefendSubClasses.add("mtopsdk.mtop.domain.IMTOPDataObject");
-        excludeDefendPackages.add("android.");
-        excludeDefendPackages.add("androidx.");
-        defendClasses.add("android.support.v7.widget.RecyclerView");
-        defendClasses.add("android.support.v7.widget.LinearLayoutManager");
-
-
-        excludeDefendPackages.add("test.exclude");
-        defendPackages.add("test");
-    }
 
 
     public static  void addTryCatch(CtClass ctClass, ClassPool pool, Class<?> sourceClass) throws NotFoundException, CannotCompileException, IOException {
+        if(ctClass.isAnnotation()){
+            return;
+        }
+        if(ctClass.isArray()){
+            return;
+        }
+
+
         //是否是普通的JavaBean类，如果是则不做处理
-        if(isExcludeSubClass(sourceClass)){
+        if(CrashDefendConfig.isExcludeSubClass(sourceClass)){
             return;
         }
 
         //跳过处理的包, 跳过处理的包
-        String excludePackage = isExcludePackage(ctClass);
+        String excludePackage = CrashDefendConfig.isExcludePackage(ctClass);
         if(excludePackage != null){
-            String includePackage = isIncludePackage(ctClass);
+            String includePackage = CrashDefendConfig.isIncludePackage(ctClass);
             if(includePackage == null){
-                if(!isIncludeClass(ctClass)){
+                if(!CrashDefendConfig.isIncludeClass(ctClass)){
                     return;
                 }
                 //默认包含类
@@ -64,15 +50,17 @@ public class CrashDefendCompiler {
 
 
         //配置包名字的采用白名单机制，没有配置, 默认全部加
-        if(defendPackages != null && !defendPackages.isEmpty()){
+        if(CrashDefendConfig.defendPackages != null && !CrashDefendConfig.defendPackages.isEmpty()){
             //默认处理模式，根据包名字来处理
-            String includePackage = isIncludePackage(ctClass);
+            String includePackage = CrashDefendConfig.isIncludePackage(ctClass);
             if(includePackage == null){
-                if(!isIncludeClass(ctClass)){
+                if(!CrashDefendConfig.isIncludeClass(ctClass)){
                     return;
                 }
             }
         }
+
+
 
         //进行正常的安全防御处理
         for (CtBehavior ctBehavior : ctClass.getDeclaredBehaviors()) {
@@ -111,7 +99,7 @@ public class CrashDefendCompiler {
                     }
                 }catch (Exception e){}
                 if(!isMethodReturnVoid(returnType.getName())){
-                    if(configOnlyVoid){
+                    if(CrashDefendConfig.configOnlyVoid){
                         continue;
                     }
                     StringBuilder code = new StringBuilder("{com.cainiao.wireless.crashdefend.CrashDefendSdk.onCatch($e);");
@@ -209,56 +197,7 @@ public class CrashDefendCompiler {
     }
 
 
-    /**
-     * 是否是排除类
-     * */
-    private static boolean isExcludeSubClass(Class<?> sourceClass){
-        while (sourceClass != null){
-            Class<?>[] interfaceClasses = sourceClass.getInterfaces();
-            for(String excludeSubClass  : excludeDefendSubClasses){
-                if(sourceClass.getName()  .equals(excludeSubClass)){
-                    return true;
-                }
-                for(Class<?> interfaceClass : interfaceClasses){
-                    if(interfaceClass.getName().equals(excludeSubClass)){
-                        return true;
-                    }
-                }
-            }
-            sourceClass = sourceClass.getSuperclass();
-        }
-        return false;
-    }
 
-
-
-    private static String isExcludePackage(CtClass ctClass){
-        for(String excludePackage  : excludeDefendPackages){
-            if(ctClass.getName().startsWith(excludePackage)){
-                return excludePackage;
-            }
-        }
-        return null;
-    }
-
-
-    private static String isIncludePackage(CtClass ctClass){
-        for(String includePackage  : defendPackages){
-            if(ctClass.getName().startsWith(includePackage)){
-                return includePackage;
-            }
-        }
-        return null;
-    }
-
-    private static boolean isIncludeClass(CtClass ctClass){
-        for(String includeClass  : defendClasses){
-            if(ctClass.getName().equals(includeClass)){
-                return true;
-            }
-        }
-        return false;
-    }
 
 
 
