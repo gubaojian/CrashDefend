@@ -109,9 +109,8 @@ public class CrashDefendCoder {
                     continue;
                 }
             }
-            ctBehavior.addCatch("{com.cainiao.wireless.crashdefend.CrashDefendSdk.onCatch($e);}", pool.get("java.lang.Throwable"));
+            ctBehavior.addCatch("{com.cainiao.wireless.crashdefend.CrashDefendSdk.onCatch($e);return;}", pool.get("java.lang.Throwable"));
         }
-        ctClass.writeFile();
     }
 
 

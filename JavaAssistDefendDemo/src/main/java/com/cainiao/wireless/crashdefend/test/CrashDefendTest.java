@@ -20,7 +20,12 @@ public class CrashDefendTest {
 
 
     public static  void addTryCatch(String className, ClassPool pool) throws NotFoundException, CannotCompileException, IOException, ClassNotFoundException {
-        CrashDefendCoder.addTryCatch(pool.getCtClass(className), pool,  pool.getClassLoader().loadClass(className));
+        CtClass ctClass = pool.getCtClass(className);
+        Class<?> javaClass = ctClass.toClass();
+        if(ctClass.isFrozen()){
+            ctClass.defrost();
+        }
+        CrashDefendCoder.addTryCatch(ctClass, pool, javaClass);
     }
 
 
