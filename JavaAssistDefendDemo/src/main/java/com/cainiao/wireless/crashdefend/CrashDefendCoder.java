@@ -64,7 +64,13 @@ public class CrashDefendCoder {
 
         //进行正常的安全防御处理
         for (CtBehavior ctBehavior : ctClass.getDeclaredBehaviors()) {
+
+
             MethodInfo methodInfo = ctBehavior.getMethodInfo();
+
+
+
+            System.out.println(methodInfo.getName() + " " + methodInfo + "  " + ctBehavior);
 
             //空方法不做处理
             if(ctBehavior.isEmpty()){
@@ -87,6 +93,12 @@ public class CrashDefendCoder {
             //私有方法不做处理, 带返回值的方法不做处理。
             if(methodInfo.isMethod()){
                 CtMethod ctMethod = (CtMethod)ctBehavior;
+                if(Modifier.isNative(ctMethod.getModifiers())){
+                    continue;
+                }
+                if(Modifier.isAbstract(ctMethod.getModifiers())){
+                    continue;
+                }
                 if(isPrivateMethod(ctMethod)){
                     continue;
                 }

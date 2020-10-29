@@ -29,6 +29,9 @@ public class RunnableTest {
     }
 
 
+    public native void testNative();
+
+
 
     private void noInsertCode(){
 
