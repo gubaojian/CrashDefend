@@ -17,7 +17,7 @@ public void testDefend(){
 ```java
 public void testDefend() {
         try {
-            (new Thread(new Runnable() {
+            new Thread(new Runnable() {
                 public void run() {
                     try {
                         throw new RuntimeException("Hello World Crash");
@@ -25,7 +25,7 @@ public void testDefend() {
                         CrashDefendSdk.onCatch(var2);
                     }
                 }
-            })).start();
+            }).start();
         } catch (Throwable var2) {
             CrashDefendSdk.onCatch(var2);
         }
