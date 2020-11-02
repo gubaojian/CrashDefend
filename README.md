@@ -39,7 +39,7 @@ public void testDefend() {
     4、各种回调生命周期偶然未正确处理导致的异常崩溃。 
     
 ## 三、主动安全防护和crash捕获关系：
-    主动安全防护是针对常见性可忽略的异常进行防护，异常时程序主功能正常运行，捕获到异常后正常上报。crash捕获是程序异常后捕获上报，上报完成后程序仍然会崩溃退出。 相同之处在于异常上报，不同之处前者程序正常运行，后者程序崩溃。
+  主动安全防护是针对常见性可忽略的异常进行防护，异常时程序主功能正常运行，捕获到异常后正常上报。crash捕获是程序异常后捕获上报，上报完成后程序仍然会崩溃退出。 相同之处在于异常上报，不同之处前者程序正常运行，后者程序崩溃。
  
  ## 四、主动安全使用说明
 4.1、安全防护SDK引入及初始化
@@ -49,8 +49,9 @@ dependencies {
 }
 ```
 ```java
+//初始化主动防护SDK，上报拦截的异常
 CrashDefendSdk.getInstance().setOnDefendCrashListener(new OnDefendCrashListener(){
-      
+     //上报拦截的异常
 });
 ```
 4.2、安全防护编译插件配置
@@ -61,17 +62,16 @@ buildscript {
        classpath 'com.crashdefend.tools.build:gradleplugin:0.0.1-SNAPSHOT'
    }
 }
+
+apply plugin: 'com.android.application'
+//应用主动防护插件，在编译时对代码进行防护处理
+apply plugin: 'com.crashdefend'
 ```
 ```groovy
 apply plugin: 'com.android.application'
 //应用插件库
 apply plugin: 'com.crashdefend'
 ```
-
-     2、初始化SDK
-          CrashDefendSdk.getInstance().setOnDefendCrashListener(new OnDefendCrashListener(){
-      
-         });
 4.3、配置配置defend.xml，可为每个模块配置单独的保护文件defend-home.xml defend-trans.xml
  
 ## 五、主动安全防护defend.xml配置
@@ -244,6 +244,30 @@ apply plugin: 'com.crashdefend'
       <defendMethod name="run"/>
     </defendClass>
 </resources>
+```
+
+## 七、安全防护效果示例
+#### 7.1 点击事件安全防护代码效果示例
+程序书写代码
+```java
+private View.OnClickListener mOnDistCenterClickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+         Toast.makeText(view.getContext(), "Hello Click Defend", Toast.LENGTH_SHORT).show();
+      }
+};
+```
+实际运行代码
+```java
+private OnClickListener mOnDistCenterClickListener = new OnClickListener() {
+    public void onClick(View view) {
+        try {
+            Toast.makeText(view.getContext(), "Hello Click Defend", Toast.LENGTH_SHORT).show();
+        } catch (Throwable th) {
+            CrashDefendSdk.onCatch(th);
+        }
+    }
+};
 ```
 
 
