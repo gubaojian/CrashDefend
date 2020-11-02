@@ -1,142 +1,252 @@
 # 主动安全防护
 
-## 为什么要做安全防护
-        1、很多时候由于一些微不足道的bug导致APP崩溃很可惜，崩溃直接导致APP退出，但并不能解决问题。
-        2、Android Supported以及Android X等三方库系统问题修复，修改源代码，在版本升级代码同步麻烦。
-        3、应用关键生命周期增加如activity fragment service的关键性生命周期保护可增加应用的健壮性。
-        4、各种回调生命周期未正确处理导致的异常防护。
-        
-## 安全防护能做什么
-        1、onclick事件、scroll事件、touch事件等防护
-        2、应用各种callback生命周期的防护
-        3、android support库内部bug防护，如RecyclerView防护
-        4、应用关键生命周期防护
-        5、自定义代码防护，根据自己业务需求，通过自己增加白名单的方式进行防护。
-        
-## 安全防护和crash捕获的关系
-       安全防护是针对常见性异常进行防护，异常时程序主功能正常运行，捕获到异常后正常上报。crash捕获是程序异常后捕获上报，上报完成后程序仍然会崩溃退出。
+## 一、什么是主动安全防护技术
+    主动安全防护是一种在编译时对类字节码进行处理，插入防护代码，处理的实现崩溃主动安全防护一种技术。示例如下：
+#### 程序员写的代码
+```java
+public void testDefend(){
+    new Thread(new Runnable() {
+        public void run() {
+            throw new RuntimeException("Hello World Crash");
+        }
+    }).start();
+}
+```
+
+#### 安全防护后实际运行代码
+```java
+public void testDefend() {
+        try {
+            (new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        throw new RuntimeException("Hello World Crash");
+                    } catch (Throwable var2) {
+                        CrashDefendSdk.onCatch(var2);
+                    }
+                }
+            })).start();
+        } catch (Throwable var2) {
+            CrashDefendSdk.onCatch(var2);
+        }
+}
+```
+
+## 二、为什么要做主动安全防护
+    1、很多时候由于一些微不足道的bug导致APP崩溃很可惜，崩溃直接导致APP退出，但并不能解决问题。
+    2、Android Supported以及Android X等三方库系统性问题通过修改源代码修复，在版本升级代码同步麻烦。
+    3、应用关键生命周期增加如activity fragment service的关键性生命周期保护，增加应用的健壮性。
+    4、各种回调生命周期偶然未正确处理导致的异常崩溃。 
+    
+## 三、主动安全防护和crash捕获关系：
+    主动安全防护是针对常见性可忽略的异常进行防护，异常时程序主功能正常运行，捕获到异常后正常上报。crash捕获是程序异常后捕获上报，上报完成后程序仍然会崩溃退出。 相同之处在于异常上报，不同之处前者程序正常运行，后者程序崩溃。
  
- ## 使用说明
-     
-     1、依赖引入：
-     
-     2、初始化SDK,
-          CrashDefendSdk.getInstance().setOnCrashCatchListener(new OnCrashCatchListener(){
+ ## 四、主动安全使用说明
+4.1、安全防护SDK引入及初始化
+```groovy
+dependencies {
+    api 'com.cainiao.wireless.crashdefendsdk:crashdefendsdk:0.0.0.1@aar'
+}
+```
+```java
+CrashDefendSdk.getInstance().setOnDefendCrashListener(new OnDefendCrashListener(){
+      
+});
+```
+4.2、安全防护编译插件配置
+```groovy
+buildscript {
+    dependencies {
+        //插件依赖
+       classpath 'com.crashdefend.tools.build:gradleplugin:0.0.1-SNAPSHOT'
+   }
+}
+```
+```groovy
+apply plugin: 'com.android.application'
+//应用插件库
+apply plugin: 'com.crashdefend'
+```
+
+     2、初始化SDK
+          CrashDefendSdk.getInstance().setOnDefendCrashListener(new OnDefendCrashListener(){
       
          });
-     2、
+4.3、配置配置defend.xml，可为每个模块配置单独的保护文件defend-home.xml defend-trans.xml
  
- ## 防护功能说明
- ## 使用说明
-## 默认安全防护功能
-      默认设定防护包下面或类的所有public protected返回值为void方法默认增加 try{}catch处理；可通过加@DefendIgnore或者下面xml配置对不需要防护的类进行排除。
+## 五、主动安全防护defend.xml配置
+### 5.1 接口实现类防护
+```xml
+ <!-- OnClickListener 点击事件防护 -->
+<defendInterfaceImpl interface="android.view.OnClickListener" scope="com.cainiao.home.wireless.home">
+</defendInterfaceImpl>
 
-      onclick事件
-      activity的生命周期
-      recycler的view系统性问题。
-      broadcastreceiver
-      service
-      fragment
+<!-- Handler.Callback 防护 -->
+<defendInterfaceImpl interface="android.os.Handler.Callback" scope="com.cainiao.home.wireless.home">
+</defendInterfaceImpl>
 
+<!-- 各种Callback回调防护，根据需要自己添加即可 -->
 
-## 设计仅拦截主现场特定异常崩溃？ 
+```
+### 5.2 类实现子类防护
+```xml
+<!-- BroadcastReceiver 消息接收防护 -->
+<defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+  <defendMethod name="onReceive"/>
+</defendSubClass>
 
+<!-- Activity关键性生命周期防护 -->
+<defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
+  <defendMethod name="onCreate"/>
+  <defendMethod name="onStart"/>
+  <defendMethod name="onResume"/>
+  <defendMethod name="onPause"/>
+  <defendMethod name="onStop"/>
+  <defendMethod name="onDestroy"/>
+  <defendMethod name="onNewIntent"/>
+  <defendMethod name="onSaveInstanceState"/>
+</defendSubClass>
 
-      
-### 安全代码防护配置 使用说明
-    <?xml version="1.0" encoding="utf-8"?>
-    <resources>
-    
-        <!-- OnClickListener 防护 -->
-        <defendInterfaceImpl interface="android.view.OnClickListener" scope="com.cainiao.home.wireless.home">
-        </defendInterfaceImpl>
-        
-        <!-- 事件分发防护 -->
-        <defendInterfaceImpl interface="android.view.Window.Callback" scope="com.cainiao.home.wireless.home">
-            <defendMethod name="dispatchTouchEvent" returnValue="false"/>
-        </defendInterfaceImpl>
-        
-        <!-- 键盘点击防护 -->
-        <defendInterfaceImpl interface="android.view.KeyEvent.Callback" scope="com.cainiao.home.wireless.home">
-        </defendInterfaceImpl>
-        
-        <!-- Runnable任务防护 -->
-        <defendInterfaceImpl interface="java.lang.Runnable" scope="com.cainiao.home.wireless.home">
-        </defendInterfaceImpl>
-        
-        <!-- Handler.Callback 防护 -->
-        <defendInterfaceImpl interface="android.os.Handler.Callback" scope="com.cainiao.home.wireless.home">
-        </defendInterfaceImpl>
-        
-        <!-- 实现防护 -->
-        <defendSubClass class="android.os.Handler" scope="com.cainiao.home.wireless.home"">
-            <defendMethod name="handleMessage"/>
-        </defendSubClass>
+<!-- Application 启动防护 -->
+<defendSubClass class="android.app.Application">
+  <defendMethod name="onCreate" />
+  <defendMethod name="onTerminate" />
+  <defendMethod name="onConfigurationChanged" />
+</defendSubClass>
+```
 
-        <!-- BroadcastReceiver 消息接收防护 -->
-        <defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home"">
-            <defendMethod name="onReceive"/>
-        </defendSubClass>
+### 5.3 指定类和方法防护
+```xml
+<!-- LinearLayoutManager 部分布局异常防护 -->
+<defendClass class="android.support.v7.widget.LinearLayoutManager">
+  <defendMethod name="scrollBy" returnValue="0"/>
+  <defendMethod name="layoutChunk" />
+  <defendMethod name="onLayoutChildren"/>
+</defendClass>
 
 
-         <!-- Activity关键性生命周期防护 -->
-        <defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
-            <defendMethod name="onCreate"/>
-            <defendMethod name="onStart"/>
-            <defendMethod name="onResume"/>
-            <defendMethod name="onPause"/>
-            <defendMethod name="onStop"/>
-            <defendMethod name="onDestroy"/>
-            <defendMethod name="onNewIntent"/>
-            <defendMethod name="onSaveInstanceState"/>
-        </defendSubClass>
-        
-        <!-- Application 启动防护 -->
-        <defendSubClass class="android.app.Application">
-            <defendMethod name="onCreate" />
-            <defendMethod name="onTerminate" />
-            <defendMethod name="onConfigurationChanged" />
-        </defendSubClass>
-        
-        <!--- 默认包防护，默认防护以上功能 -->
-        <defendAuto scope="com.cainiao.home.wireless.home"/>
-        
-        
-        <!--RecyclerView 部分异常防护 -->
-        <defendClass class="android.support.v7.widget.RecyclerView">
-            <defendMethod name="setScrollState"/>
-            <defendMethod name="dispatchOnScrollStateChanged"/>
-            <defendMethod name="scrollToPosition"/>
-            <defendMethod name="onLayout"/>
-            <defendMethod name="dispatchLayout"/>
-            <defendMethod name="draw"/>
-            <defendMethod name="onAttachedToWindow"/>
-            <defendMethod name="removeAnimatingView"/>
-        </defendClass>
+<!-- DefaultItemAnimator runPendingAnimations异常防护 -->
+<defendClass class="android.support.v7.widget.DefaultItemAnimator">
+  <defendMethod name="runPendingAnimations"/>
+</defendClass>
 
-        <!-- LinearLayoutManager 部分布局异常防护 -->
-        <defendClass class="android.support.v7.widget.LinearLayoutManager">
-              <defendMethod name="scrollBy" returnValue="0"/>
-              <defendMethod name="layoutChunk" />
-              <defendMethod name="onLayoutChildren"/>
-        </defendClass>
+<!-- AndroidX ForceStopRunnable异常防护 -->
+<defendClass class="androidx.work.impl.utils.ForceStopRunnable" >
+  <defendMethod name="run"/>
+</defendClass>
+
+<!--RecyclerView 部分异常防护 -->
+<defendClass class="android.support.v7.widget.RecyclerView">
+  <defendMethod name="setScrollState"/>
+  <defendMethod name="dispatchOnScrollStateChanged"/>
+  <defendMethod name="scrollToPosition"/>
+  <defendMethod name="onLayout"/>
+  <defendMethod name="dispatchLayout"/>
+  <defendMethod name="draw"/>
+  <defendMethod name="onAttachedToWindow"/>
+  <defendMethod name="removeAnimatingView"/>
+</defendClass>
+
+```
+
+## 六、安全防护整体配置示例
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- OnClickListener 防护 -->
+    <defendInterfaceImpl interface="android.view.OnClickListener" scope="com.cainiao.home.wireless.home">
+    </defendInterfaceImpl>
+
+    <!-- 事件分发防护 -->
+    <defendInterfaceImpl interface="android.view.Window.Callback" scope="com.cainiao.home.wireless.home">
+      <defendMethod name="dispatchTouchEvent" returnValue="false"/>
+    </defendInterfaceImpl>
+
+    <!-- 键盘点击防护 -->
+    <defendInterfaceImpl interface="android.view.KeyEvent.Callback" scope="com.cainiao.home.wireless.home">
+    </defendInterfaceImpl>
+
+    <!-- Runnable任务防护 -->
+    <defendInterfaceImpl interface="java.lang.Runnable" scope="com.cainiao.home.wireless.home">
+    </defendInterfaceImpl>
+
+    <!-- Handler.Callback 防护 -->
+    <defendInterfaceImpl interface="android.os.Handler.Callback" scope="com.cainiao.home.wireless.home">
+    </defendInterfaceImpl>
+
+    <!-- Handler实现防护 -->
+    <defendSubClass class="android.os.Handler" scope="com.cainiao.home.wireless.home">
+      <defendMethod name="handleMessage"/>
+    </defendSubClass>
+
+    <!-- BroadcastReceiver 消息接收防护 -->
+    <defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+      <defendMethod name="onReceive"/>
+    </defendSubClass>
 
 
-        <!-- DefaultItemAnimator runPendingAnimations异常防护 -->
-        <defendClass class="android.support.v7.widget.DefaultItemAnimator">
-            <defendMethod name="runPendingAnimations"/>
-        </defendClass>
+    <!-- Activity关键性生命周期防护 -->
+    <defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
+      <defendMethod name="onCreate"/>
+      <defendMethod name="onStart"/>
+      <defendMethod name="onResume"/>
+      <defendMethod name="onPause"/>
+      <defendMethod name="onStop"/>
+      <defendMethod name="onDestroy"/>
+      <defendMethod name="onNewIntent"/>
+      <defendMethod name="onSaveInstanceState"/>
+    </defendSubClass>
 
-        <!-- AndroidX ForceStopRunnable异常防护 -->
-        <defendClass class="androidx.work.impl.utils.ForceStopRunnable" >
-            <defendMethod name="run"/>
-        </defendClass>
-        
-        <!-- RecyclerView 后台获取异常防护 -->
-        <defendClass class="android.support.v7.widget.GapWorker" >
-            <defendMethod name="run"/>
-        </defendClass>
-    </resources>
-    
-    
- ### 异步任务防护
+    <!-- Application 启动防护 -->
+    <defendSubClass class="android.app.Application">
+      <defendMethod name="onCreate" />
+      <defendMethod name="onTerminate" />
+      <defendMethod name="onConfigurationChanged" />
+    </defendSubClass>
+
+    <!--- 默认包防护，默认防护以上功能 -->
+    <defendAuto scope="com.cainiao.home.wireless.home"/>
+
+
+    <!--RecyclerView 部分异常防护 -->
+    <defendClass class="android.support.v7.widget.RecyclerView">
+      <defendMethod name="setScrollState"/>
+      <defendMethod name="dispatchOnScrollStateChanged"/>
+      <defendMethod name="scrollToPosition"/>
+      <defendMethod name="onLayout"/>
+      <defendMethod name="dispatchLayout"/>
+      <defendMethod name="draw"/>
+      <defendMethod name="onAttachedToWindow"/>
+      <defendMethod name="removeAnimatingView"/>
+    </defendClass>
+
+    <!-- LinearLayoutManager 部分布局异常防护 -->
+    <defendClass class="android.support.v7.widget.LinearLayoutManager">
+      <defendMethod name="scrollBy" returnValue="0"/>
+      <defendMethod name="layoutChunk" />
+      <defendMethod name="onLayoutChildren"/>
+    </defendClass>
+
+
+    <!-- DefaultItemAnimator runPendingAnimations异常防护 -->
+    <defendClass class="android.support.v7.widget.DefaultItemAnimator">
+      <defendMethod name="runPendingAnimations"/>
+    </defendClass>
+
+    <!-- AndroidX ForceStopRunnable异常防护 -->
+    <defendClass class="androidx.work.impl.utils.ForceStopRunnable" >
+      <defendMethod name="run"/>
+    </defendClass>
+
+    <!-- RecyclerView 后台获取异常防护 -->
+    <defendClass class="android.support.v7.widget.GapWorker" >
+      <defendMethod name="run"/>
+    </defendClass>
+</resources>
+```
+
+
+ 
+ 
+ 
