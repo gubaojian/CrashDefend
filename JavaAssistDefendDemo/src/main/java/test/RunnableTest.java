@@ -1,11 +1,14 @@
 package test;
 
+import com.cainiao.wireless.crashdefend.Defend;
 import com.cainiao.wireless.crashdefend.DefendIgnore;
 
 public class RunnableTest {
 
+    @Defend
     public void testDefend(){
             new Thread(new Runnable() {
+                @Defend
                 public void run() {
                     throw new RuntimeException("Hello World Crash");
                 }
