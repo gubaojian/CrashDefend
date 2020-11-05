@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Runnable任务防护， scope配置生效的包名范围-->
+    <defendSubClass parent="java.lang.Thread" scope="test.defendsubclass">
+        <defendMethod name="run"/>
+    </defendSubClass>
+
+</resources>

@@ -41,6 +41,9 @@
         <defendMethod name="handleMessage"/>
     </defendSubClass>
 
+    <!-- 线程防护，Thread/HandlerThread防护 -->
+
+
     <!-- BroadcastReceiver 消息接收防护 -->
     <defendSubClass parent="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
         <defendMethod name="onReceive"/>
@@ -101,7 +104,7 @@
     </defendClass>
 
     <!-- RecyclerView 后台获取异常防护 -->
-    <defendClass class="android.support.v7.widget.GapWorker" reportException="false" >
+    <defendClass class="android.support.v7.widget.GapWorker">
         <defendMethod name="run"/>
     </defendClass>
 

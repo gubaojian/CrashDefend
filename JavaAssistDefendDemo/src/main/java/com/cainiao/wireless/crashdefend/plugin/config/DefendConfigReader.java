@@ -143,12 +143,14 @@ public class DefendConfigReader {
         if(nodeList != null) {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                Map<String, String> attrs = parseAttrs(node);
-                String name = attrs.get(DefendConfigElements.ATTR_NAME);
-                String returnValue = attrs.get(DefendConfigElements.ATTR_RETURN_VALUE);
-                DefendMethod defendMethod = new DefendMethod(name, attrs);
-                defendMethod.setReturnValue(returnValue);
-                defendMethods.add(defendMethod);
+                if(DefendConfigElements.TAG_DEFEND_METHOD.equals(node.getNodeName())) {
+                    Map<String, String> attrs = parseAttrs(node);
+                    String name = attrs.get(DefendConfigElements.ATTR_NAME);
+                    String returnValue = attrs.get(DefendConfigElements.ATTR_RETURN_VALUE);
+                    DefendMethod defendMethod = new DefendMethod(name, attrs);
+                    defendMethod.setReturnValue(returnValue);
+                    defendMethods.add(defendMethod);
+                }
             }
         }
         return defendMethods;

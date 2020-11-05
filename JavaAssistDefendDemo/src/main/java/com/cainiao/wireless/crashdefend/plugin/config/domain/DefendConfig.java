@@ -1,5 +1,6 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
+import com.cainiao.wireless.crashdefend.Defend;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendAuto;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendClass;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendInterfaceImpl;
@@ -52,6 +53,16 @@ public class DefendConfig implements Serializable, MatchDefend{
      * 防护自动防护包列表
      * */
     private List<DefendAuto> defendAutoList;
+
+    /**
+     * 注解防护列表
+     * */
+    private List<DefendMethodAnnotation> defendMethodAnnotations;
+
+    public DefendConfig() {
+        defendMethodAnnotations = new ArrayList<DefendMethodAnnotation>();
+        defendMethodAnnotations.add(new DefendMethodAnnotation(Defend.class));
+    }
 
     public boolean isDefendOnDebug() {
         return defendOnDebug;
@@ -141,6 +152,24 @@ public class DefendConfig implements Serializable, MatchDefend{
         if(defendSubClassList != null){
             for(DefendSubClass defendSubClass : defendSubClassList){
                 if(defendSubClass.isDefend(ctClass, ctMethod)){
+                    return true;
+                }
+            }
+        }
+
+        //是否匹配 defendClassList
+        if(defendClassList != null){
+            for(DefendClass defendClass : defendClassList){
+                if(defendClass.isDefend(ctClass, ctMethod)){
+                    return true;
+                }
+            }
+        }
+
+        //注解扫描
+        if(defendMethodAnnotations != null){
+            for(DefendMethodAnnotation defendMethodAnnotation : defendMethodAnnotations){
+                if(defendMethodAnnotation.isDefend(ctClass, ctMethod)){
                     return true;
                 }
             }

@@ -38,7 +38,7 @@ public class CrashDefendCoder {
                 }else{
                     ctBehavior.addCatch("{com.cainiao.wireless.crashdefend.CrashDefendSdk.onCatch(exp);return;}", pool.get(CrashDefendConfig.defendConfig.getDefendCatchClass()), "exp");
                 }
-                System.out.println("defend class " + ctClass.getName() + " method " + ctMethod.getName());
+                System.out.println("defend class " + ctClass.getName() + " method " + ctMethod.getName() + ctMethod.getSignature());
             }
         }
     }
