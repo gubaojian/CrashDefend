@@ -46,7 +46,7 @@ public class DefendConfigTest {
         //2.创建DocumentBuilder对象
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document d = builder.parse("src/main/resources/defend.xml");
+            Document d = builder.parse("src/test/resources/defend.xml");
             NodeList sList = d.getElementsByTagName("defendInterfaceImpl");
             //element(sList);
             node(sList);

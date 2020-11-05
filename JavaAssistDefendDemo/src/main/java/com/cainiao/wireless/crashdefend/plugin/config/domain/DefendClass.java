@@ -1,10 +1,14 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
+import javassist.CtClass;
+import javassist.CtMethod;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class DefendClass implements Serializable {
+public class DefendClass implements Serializable, MatchDefend {
     private static final long serialVersionUID = 6816190703499881745L;
 
     private String className;
@@ -40,5 +44,18 @@ public class DefendClass implements Serializable {
 
     public void setDefendMethodList(List<DefendMethod> defendMethodList) {
         this.defendMethodList = defendMethodList;
+    }
+
+    public boolean isDefend(CtClass ctClass, CtMethod ctMethod) {
+        if(StringUtils.equals(ctClass.getName(), className)){
+            if(defendMethodList != null){
+                for(DefendMethod defendMethod : defendMethodList){
+                    if(defendMethod.isDefend(ctClass, ctMethod)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

@@ -1,13 +1,18 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
+import javassist.CtClass;
+import javassist.CtMethod;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.Map;
 
-public class DefendMethod implements Serializable {
+public class DefendMethod implements Serializable, MatchDefend {
     private static final long serialVersionUID = 4120604044647504370L;
 
-    public String methodName;
-    public Map<String,String> attributes;
+    private String methodName;
+    private String returnValue;
+    private Map<String,String> attributes;
 
     public DefendMethod(String methodName, Map<String, String> attributes) {
         this.methodName = methodName;
@@ -28,5 +33,20 @@ public class DefendMethod implements Serializable {
 
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
+    }
+
+    public String getReturnValue() {
+        return returnValue;
+    }
+
+    public void setReturnValue(String returnValue) {
+        this.returnValue = returnValue;
+    }
+
+    /**
+     * 判断方法是否在保护方法之内
+     * */
+    public boolean isDefend(CtClass ctClass, CtMethod ctMethod) {
+         return StringUtils.equals(ctMethod.getName(), methodName);
     }
 }

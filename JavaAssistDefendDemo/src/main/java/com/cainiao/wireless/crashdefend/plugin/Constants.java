@@ -1,4 +1,4 @@
-package com.cainiao.wireless.crashdefend;
+package com.cainiao.wireless.crashdefend.plugin;
 
 public class Constants {
 

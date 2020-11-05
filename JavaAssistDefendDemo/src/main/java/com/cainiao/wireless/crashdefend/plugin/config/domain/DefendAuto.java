@@ -1,9 +1,13 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
+import javassist.CtClass;
+import javassist.CtMethod;
+
 import java.io.Serializable;
 import java.util.Map;
 
-public class DefendAuto implements Serializable {
+//FIXME Auto实现测试
+public class DefendAuto implements Serializable, MatchDefend {
     private static final long serialVersionUID = -3714160097375512785L;
 
     private String scope;
@@ -28,5 +32,12 @@ public class DefendAuto implements Serializable {
 
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
+    }
+
+    public boolean isDefend(CtClass ctClass, CtMethod ctMethod) {
+        if(ctClass.getName().startsWith(scope)){
+            //FIXME Auto 实现处理。Runnable OnClickListener, Activity Fragment生命周期， Handler 及 Handler.Callback
+        }
+        return false;
     }
 }

@@ -1,14 +1,21 @@
-package com.cainiao.wireless.crashdefend.plugin.config;
+package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendAuto;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendClass;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendInterfaceImpl;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendSubClass;
+import javassist.CtClass;
+import javassist.CtMethod;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DefendConfig {
+public class DefendConfig implements Serializable, MatchDefend{
 
+    private static final long serialVersionUID = 1399644052227571261L;
+
+    private static final String DEFAULT_CATCH_CLASS = "java.lang.Throwable";
     /**
      * debug包是否插入代码
      * */
@@ -18,6 +25,11 @@ public class DefendConfig {
      * 代码防护是否打开
      * */
     private boolean defendOff;
+
+    /**
+     * defendConfig类型
+     * */
+    private String defendCatchClass;
 
     /**
      * 防护Class列表
@@ -58,6 +70,9 @@ public class DefendConfig {
     }
 
     public List<DefendClass> getDefendClassList() {
+        if(defendClassList == null){
+            defendClassList = new ArrayList<DefendClass>();
+        }
         return defendClassList;
     }
 
@@ -66,6 +81,9 @@ public class DefendConfig {
     }
 
     public List<DefendSubClass> getDefendSubClassList() {
+        if(defendSubClassList == null){
+            defendSubClassList = new ArrayList<DefendSubClass>();
+        }
         return defendSubClassList;
     }
 
@@ -74,6 +92,9 @@ public class DefendConfig {
     }
 
     public List<DefendInterfaceImpl> getDefendInterfaceList() {
+        if(defendInterfaceList == null){
+            defendInterfaceList = new ArrayList<DefendInterfaceImpl>();
+        }
         return defendInterfaceList;
     }
 
@@ -82,10 +103,48 @@ public class DefendConfig {
     }
 
     public List<DefendAuto> getDefendAutoList() {
+        if(defendAutoList == null){
+            defendAutoList = new ArrayList<DefendAuto>();
+        }
         return defendAutoList;
     }
 
     public void setDefendAutoList(List<DefendAuto> defendAutoList) {
         this.defendAutoList = defendAutoList;
+    }
+
+    public String getDefendCatchClass() {
+        if(defendCatchClass == null){
+            defendCatchClass = DEFAULT_CATCH_CLASS;
+        }
+        return defendCatchClass;
+    }
+
+    public void setDefendCatchClass(String defendCatchClass) {
+        this.defendCatchClass = defendCatchClass;
+    }
+
+    public boolean isDefend(CtClass ctClass, CtMethod ctMethod) {
+        if(isDefendOff()) {
+            return false;
+        }
+        //是否匹配 defendInterfaceList
+        if(defendInterfaceList != null){
+            for(DefendInterfaceImpl defendInterface : defendInterfaceList){
+                if(defendInterface.isDefend(ctClass, ctMethod)){
+                    return true;
+                }
+            }
+        }
+
+        //是否匹配 defendSubClassList
+        if(defendSubClassList != null){
+            for(DefendSubClass defendSubClass : defendSubClassList){
+                if(defendSubClass.isDefend(ctClass, ctMethod)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

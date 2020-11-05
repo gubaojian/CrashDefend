@@ -3,13 +3,14 @@
 
     <!-- debug包开启防护功能，默认仅release开启 -->
     <defendOnDebug>true</defendOnDebug>
+
     <!-- 关闭 所有防护功能 -->
     <defendOff>true</defendOff>
 
-    <!-- debug包开启防护功能，默认仅release开启 -->
-    <defendOnDebug>true</defendOnDebug>
-    <!-- 关闭 所有防护功能 -->
-    <defendOff>true</defendOff>
+    <!-- defendCatch 默认类型 -->
+    <defendCatchClass>java.lang.Throwable</defendCatchClass>
+
+
 
     <!-- 首页点击事件防护， scope配置生效的包名范围，多个模块可配置多条记录 -->
     <defendInterfaceImpl interface="android.view.OnClickListener" scope="com.cainiao.home.wireless.home">
@@ -36,18 +37,18 @@
     </defendInterfaceImpl>
 
     <!-- Handler实现防护 -->
-    <defendSubClass class="android.os.Handler" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.os.Handler" scope="com.cainiao.home.wireless.home">
         <defendMethod name="handleMessage"/>
     </defendSubClass>
 
     <!-- BroadcastReceiver 消息接收防护 -->
-    <defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
         <defendMethod name="onReceive"/>
     </defendSubClass>
 
 
     <!-- Activity关键性生命周期防护 -->
-    <defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.app.Activity" scope="com.cainiao.home.wireless.home">
         <defendMethod name="onCreate"/>
         <defendMethod name="onStart"/>
         <defendMethod name="onResume"/>
@@ -59,7 +60,7 @@
     </defendSubClass>
 
     <!-- Application 启动防护 -->
-    <defendSubClass class="android.app.Application" scope="com.cainiao">
+    <defendSubClass parent="android.app.Application" scope="com.cainiao">
         <defendMethod name="onCreate" />
         <defendMethod name="onTerminate" />
         <defendMethod name="onConfigurationChanged" />
@@ -100,7 +101,7 @@
     </defendClass>
 
     <!-- RecyclerView 后台获取异常防护 -->
-    <defendClass class="android.support.v7.widget.GapWorker" >
+    <defendClass class="android.support.v7.widget.GapWorker" reportException="false" >
         <defendMethod name="run"/>
     </defendClass>
 

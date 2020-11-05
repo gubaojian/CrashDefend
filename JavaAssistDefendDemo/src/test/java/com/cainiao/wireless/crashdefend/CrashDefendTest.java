@@ -1,6 +1,6 @@
-package com.cainiao.wireless.crashdefend.test;
+package com.cainiao.wireless.crashdefend;
 
-import com.cainiao.wireless.crashdefend.CrashDefendCoder;
+import com.cainiao.wireless.crashdefend.plugin.CrashDefendCoder;
 import javassist.*;
 
 import java.io.IOException;
@@ -21,11 +21,7 @@ public class CrashDefendTest {
 
     public static  void addTryCatch(String className, ClassPool pool) throws NotFoundException, CannotCompileException, IOException, ClassNotFoundException {
         CtClass ctClass = pool.getCtClass(className);
-        Class<?> javaClass = ctClass.toClass();
-        if(ctClass.isFrozen()){
-            ctClass.defrost();
-        }
-        CrashDefendCoder.addTryCatch(ctClass, pool, javaClass);
+        CrashDefendCoder.addTryCatch(ctClass, pool);
     }
 
 
