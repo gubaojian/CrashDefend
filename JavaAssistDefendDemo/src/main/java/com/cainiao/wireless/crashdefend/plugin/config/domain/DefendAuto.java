@@ -4,6 +4,7 @@ import javassist.CtClass;
 import javassist.CtMethod;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 //FIXME Auto实现测试
@@ -36,7 +37,10 @@ public class DefendAuto implements Serializable, MatchDefend {
 
     public boolean isDefend(CtClass ctClass, CtMethod ctMethod) {
         if(ctClass.getName().startsWith(scope)){
+            Map<String, ArrayList<String>> autoDefendClassMethods = DefendAutoConfig.autoDefendClassMethods;
+            
             //FIXME Auto 实现处理。Runnable OnClickListener, Activity Fragment生命周期， Handler 及 Handler.Callback
+            // 的
         }
         return false;
     }

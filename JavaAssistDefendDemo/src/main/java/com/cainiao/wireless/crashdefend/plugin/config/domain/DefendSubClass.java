@@ -61,7 +61,7 @@ public class DefendSubClass implements Serializable, MatchDefend {
     }
 
     /**
-     * 是否是子类的排除类。
+     * 是否是子类或者接口实现。
      * */
     public boolean isSubClass(CtClass sourceClass){
         while (sourceClass != null){
