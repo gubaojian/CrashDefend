@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-
-    <!-- Runnable任务防护， scope配置生效的包名范围-->
-    <defendInterfaceImpl interface="java.lang.Runnable" scope="test.defendinterfaceimpl">
-    </defendInterfaceImpl>
-
-</resources>

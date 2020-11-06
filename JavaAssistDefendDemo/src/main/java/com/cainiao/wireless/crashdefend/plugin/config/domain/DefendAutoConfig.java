@@ -78,6 +78,7 @@ public class DefendAutoConfig {
         ArrayList<String> methods = new ArrayList<String>();
         methods.add("onAttach");
         methods.add("onCreate");
+        methods.add("onViewCreated");
         methods.add("onStart");
         methods.add("onResume");
         methods.add("onPause");

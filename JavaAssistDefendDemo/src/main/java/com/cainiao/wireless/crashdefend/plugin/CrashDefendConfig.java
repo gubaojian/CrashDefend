@@ -1,6 +1,5 @@
 package com.cainiao.wireless.crashdefend.plugin;
 
-import com.cainiao.wireless.crashdefend.annotation.DefendIgnore;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendConfig;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -34,10 +33,13 @@ public class CrashDefendConfig {
             return false;
         }
         try {
-            Object defendIgnore = ctMethod.getAnnotation(DefendIgnore.class);
-            if(defendIgnore != null){
-                return  false;
-            }
+           Class<?> defendIgnoreClass =  ClassHelper.getDefendIgnoreAnnotationClass();
+           if(defendIgnoreClass != null){
+               Object defendIgnore = ctMethod.getAnnotation(defendIgnoreClass);
+               if(defendIgnore != null){
+                   return  false;
+               }
+           }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

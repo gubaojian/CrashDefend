@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-
-    <!--- 默认常规防护，默认防护以上功能 -->
-    <defendAuto scope="test.defendauto.RunnableTest"/>
-
-
-</resources>

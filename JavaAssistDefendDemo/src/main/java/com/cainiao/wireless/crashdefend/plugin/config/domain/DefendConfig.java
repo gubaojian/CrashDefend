@@ -1,6 +1,7 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
-import com.cainiao.wireless.crashdefend.annotation.Defend;
+import com.cainiao.wireless.crashdefend.plugin.ClassHelper;
+
 import javassist.CtClass;
 import javassist.CtMethod;
 
@@ -57,8 +58,10 @@ public class DefendConfig implements Serializable, MatchDefend{
 
     public DefendConfig() {
         defendMethodAnnotations = new ArrayList<MatchDefend>();
-        defendMethodAnnotations.add(new DefendMethodAnnotation(Defend.class));
-        defendMethodAnnotations.add(new DefendClassAnnotation(Defend.class));
+        if(ClassHelper.getDefendAnnotationClass() != null) {
+            defendMethodAnnotations.add(new DefendMethodAnnotation(ClassHelper.getDefendAnnotationClass()));
+            defendMethodAnnotations.add(new DefendClassAnnotation(ClassHelper.getDefendAnnotationClass()));
+        }
     }
 
     public boolean isDefendOnDebug() {
