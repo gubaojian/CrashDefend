@@ -15,7 +15,24 @@ public class CrashDefendSdk {
         return mCrashDefendSdk;
     }
 
+    /**
+     * 捕获异常的回调
+     * */
     public static void onCatch(Throwable e){
-
+        CrashDefendSdk crashDefendSdk = getInstance();
+        OnDefendCatchListener onDefendCatchListener = crashDefendSdk.getOnDefendCatchListener();
+        if(onDefendCatchListener != null){
+            onDefendCatchListener.onCatch(e);
+        }
     }
+
+    public OnDefendCatchListener getOnDefendCatchListener() {
+        return mOnDefendCatchListener;
+    }
+
+    public void setOnDefendCatchListener(OnDefendCatchListener mOnDefendCatchListener) {
+        this.mOnDefendCatchListener = mOnDefendCatchListener;
+    }
+
+    private OnDefendCatchListener mOnDefendCatchListener;
 }

@@ -25,7 +25,7 @@ public class CrashDefendCoder {
                 }
                 //空方法不做处理
                 if(ctBehavior.isEmpty()){
-                    System.out.println("empty class " + ctClass.getName() + " method " + ctMethod.getName() + ctMethod.getSignature() + ", none need try catch");
+                    System.out.println("empty class " + ctClass.getName() + " method " + ctMethod.getName() + ctMethod.getSignature() + ", none need try catch defend");
                     continue;
                 }
 
