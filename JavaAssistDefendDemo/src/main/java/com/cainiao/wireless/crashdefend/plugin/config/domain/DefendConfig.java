@@ -1,10 +1,6 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
 import com.cainiao.wireless.crashdefend.Defend;
-import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendAuto;
-import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendClass;
-import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendInterfaceImpl;
-import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendSubClass;
 import javassist.CtClass;
 import javassist.CtMethod;
 
@@ -57,11 +53,12 @@ public class DefendConfig implements Serializable, MatchDefend{
     /**
      * 注解防护列表
      * */
-    private List<DefendMethodAnnotation> defendMethodAnnotations;
+    private List<MatchDefend> defendMethodAnnotations;
 
     public DefendConfig() {
-        defendMethodAnnotations = new ArrayList<DefendMethodAnnotation>();
+        defendMethodAnnotations = new ArrayList<MatchDefend>();
         defendMethodAnnotations.add(new DefendMethodAnnotation(Defend.class));
+        defendMethodAnnotations.add(new DefendClassAnnotation(Defend.class));
     }
 
     public boolean isDefendOnDebug() {
@@ -168,12 +165,22 @@ public class DefendConfig implements Serializable, MatchDefend{
 
         //注解扫描
         if(defendMethodAnnotations != null){
-            for(DefendMethodAnnotation defendMethodAnnotation : defendMethodAnnotations){
+            for(MatchDefend defendMethodAnnotation : defendMethodAnnotations){
                 if(defendMethodAnnotation.isDefend(ctClass, ctMethod)){
                     return true;
                 }
             }
         }
+
+        //自动扫描
+        if(defendAutoList != null){
+            for(DefendAuto defendAuto : defendAutoList){
+                if(defendAuto.isDefend(ctClass, ctMethod)){
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }

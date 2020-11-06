@@ -17,17 +17,18 @@ public class CrashDefendCoder {
     public static  void addTryCatch(CtClass ctClass, ClassPool pool) throws NotFoundException, CannotCompileException, IOException {
         //进行正常的安全防御处理
         for (CtBehavior ctBehavior : ctClass.getDeclaredBehaviors()) {
-            //空方法不做处理
-            if(ctBehavior.isEmpty()){
-                continue;
-            }
-
             if(ctBehavior instanceof  CtMethod){
                 CtMethod ctMethod = (CtMethod)ctBehavior;
                 boolean  isDefendMethod = CrashDefendConfig.isDefendMethod(ctClass, ctMethod);
                 if(!isDefendMethod){
                     continue;
                 }
+                //空方法不做处理
+                if(ctBehavior.isEmpty()){
+                    System.out.println("empty class " + ctClass.getName() + " method " + ctMethod.getName() + ctMethod.getSignature() + ", none need try catch");
+                    continue;
+                }
+
                 //返回值类型, 无返回值类型的处理
                 CtClass returnType =  ctMethod.getReturnType();
                 if(!isMethodReturnVoid(returnType.getName())){

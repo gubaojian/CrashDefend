@@ -1,9 +1,10 @@
 package com.cainiao.wireless.crashdefend.plugin.config.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javassist.CtClass;
+import javassist.CtMethod;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 public class DefendAutoConfig {
 
@@ -157,7 +158,27 @@ public class DefendAutoConfig {
     }
 
 
-
+    /**
+     * 主动防护方法类列表和方法列表
+     * */
+    public static  boolean isDefend(CtClass ctClass, CtMethod ctMethod){
+        Map<String, ArrayList<String>> autoDefendClassMethods = DefendAutoConfig.autoDefendClassMethods;
+        if(autoDefendClassMethods == null){
+            return false;
+        }
+        Set<Map.Entry<String, ArrayList<String>>> entrySets =  autoDefendClassMethods.entrySet();
+        for(Map.Entry<String, ArrayList<String>> entry : entrySets){
+            if(SubClassUtils.isSubClass(ctClass, entry.getKey())){
+                ArrayList<String> methods = entry.getValue();
+                for(String method : methods){
+                    if(StringUtils.equals(method, ctMethod.getName())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
 
 

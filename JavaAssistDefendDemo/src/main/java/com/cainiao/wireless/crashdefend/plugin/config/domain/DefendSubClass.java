@@ -48,7 +48,7 @@ public class DefendSubClass implements Serializable, MatchDefend {
         if(!ctClass.getName().startsWith(scope)){
             return false;
         }
-        if(isSubClass(ctClass)){
+        if(SubClassUtils.isSubClass(ctClass, className)){
             if(defendMethodList != null){
                 for(DefendMethod defendMethod : defendMethodList){
                     if(defendMethod.isDefend(ctClass, ctMethod)){
@@ -60,35 +60,5 @@ public class DefendSubClass implements Serializable, MatchDefend {
         return false;
     }
 
-    /**
-     * 是否是子类或者接口实现。
-     * */
-    public boolean isSubClass(CtClass sourceClass){
-        while (sourceClass != null){
-            if(sourceClass.getName().equals(className)){
-                return true;
-            }
 
-            CtClass[] interfaceClasses = null;
-            try {
-                interfaceClasses = sourceClass.getInterfaces();
-                if(interfaceClasses != null) {
-                    for (CtClass interfaceClass : interfaceClasses) {
-                        if (interfaceClass.getName().equals(className)) {
-                            return true;
-                        }
-                    }
-                }
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            }
-            try {
-                sourceClass = sourceClass.getSuperclass();
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-                sourceClass = null;
-            }
-        }
-        return false;
-    }
 }
