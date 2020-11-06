@@ -1,6 +1,6 @@
 package test.defendmethodannotation;
 
-import com.cainiao.wireless.crashdefend.Defend;
+import com.cainiao.wireless.crashdefend.annotation.Defend;
 
 public class AnnotationTest {
 

@@ -1,6 +1,6 @@
 package com.cainiao.wireless.crashdefend.plugin;
 
-import com.cainiao.wireless.crashdefend.DefendIgnore;
+import com.cainiao.wireless.crashdefend.annotation.DefendIgnore;
 import com.cainiao.wireless.crashdefend.plugin.config.domain.DefendConfig;
 import javassist.CtClass;
 import javassist.CtMethod;

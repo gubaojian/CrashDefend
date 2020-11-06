@@ -1,7 +1,7 @@
 package test;
 
-import com.cainiao.wireless.crashdefend.Defend;
-import com.cainiao.wireless.crashdefend.DefendIgnore;
+import com.cainiao.wireless.crashdefend.annotation.Defend;
+import com.cainiao.wireless.crashdefend.annotation.DefendIgnore;
 
 public class RunnableTest {
 

@@ -1,8 +1,5 @@
 package test.defendinterfaceimpl;
 
-import com.cainiao.wireless.crashdefend.Defend;
-import com.cainiao.wireless.crashdefend.DefendIgnore;
-
 public class RunnableTest {
 
     public void testDefend(){

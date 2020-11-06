@@ -1,9 +1,9 @@
-package com.cainiao.wireless.crashdefend;
+package com.cainiao.wireless.crashdefend.annotation;
 
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(value = RetentionPolicy.CLASS)
-public @interface Defend {
+public @interface DefendIgnore {
 }

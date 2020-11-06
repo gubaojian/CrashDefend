@@ -1,6 +1,6 @@
 package test.defendclassannotation;
 
-import com.cainiao.wireless.crashdefend.Defend;
+import com.cainiao.wireless.crashdefend.annotation.Defend;
 
 @Defend
 public class RunnableTest  implements  Runnable{
