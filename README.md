@@ -91,12 +91,12 @@ apply plugin: 'com.crashdefend'
 ### 5.2 类实现子类防护
 ```xml
 <!-- BroadcastReceiver 消息接收防护 -->
-<defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+<defendSubClass parent="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
   <defendMethod name="onReceive"/>
 </defendSubClass>
 
 <!-- Activity关键性生命周期防护 -->
-<defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
+<defendSubClass parent="android.app.Activity" scope="com.cainiao.home.wireless.home">
   <defendMethod name="onCreate"/>
   <defendMethod name="onStart"/>
   <defendMethod name="onResume"/>
@@ -108,7 +108,7 @@ apply plugin: 'com.crashdefend'
 </defendSubClass>
 
 <!-- Application 启动防护 -->
-<defendSubClass class="android.app.Application">
+<defendSubClass parent="android.app.Application">
   <defendMethod name="onCreate" />
   <defendMethod name="onTerminate" />
   <defendMethod name="onConfigurationChanged" />
@@ -176,18 +176,18 @@ apply plugin: 'com.crashdefend'
     </defendInterfaceImpl>
 
     <!-- Handler实现防护 -->
-    <defendSubClass class="android.os.Handler" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.os.Handler" scope="com.cainiao.home.wireless.home">
       <defendMethod name="handleMessage"/>
     </defendSubClass>
 
     <!-- BroadcastReceiver 消息接收防护 -->
-    <defendSubClass class="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
       <defendMethod name="onReceive"/>
     </defendSubClass>
 
 
     <!-- Activity关键性生命周期防护 -->
-    <defendSubClass class="android.app.Activity" scope="com.cainiao.home.wireless.home">
+    <defendSubClass parent="android.app.Activity" scope="com.cainiao.home.wireless.home">
       <defendMethod name="onCreate"/>
       <defendMethod name="onStart"/>
       <defendMethod name="onResume"/>
@@ -199,7 +199,7 @@ apply plugin: 'com.crashdefend'
     </defendSubClass>
 
     <!-- Application 启动防护 -->
-    <defendSubClass class="android.app.Application">
+    <defendSubClass parent="android.app.Application">
       <defendMethod name="onCreate" />
       <defendMethod name="onTerminate" />
       <defendMethod name="onConfigurationChanged" />
