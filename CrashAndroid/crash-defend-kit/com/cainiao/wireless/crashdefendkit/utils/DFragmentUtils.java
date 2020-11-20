@@ -1,0 +1,47 @@
+package com.cainiao.wireless.crashdefendkit.utils;
+
+import android.app.Fragment;
+import android.support.v4.app.DialogFragment;
+
+import com.cainiao.wireless.crashdefendkit.CrashDefendKit;
+
+public class DFragmentUtils {
+
+
+    /**
+     * Fragment 是否有效, 或者已销毁
+     * */
+    public static final boolean isFragmentValid(Fragment fragment){
+        if(fragment == null){
+            return false;
+        }
+        if(fragment.getActivity() == null){
+            return false;
+        }
+
+        if(!fragment.isAdded()){
+            return false;
+        }
+
+        if(fragment.isDetached()){
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * 隐藏Dialog
+     * */
+    public static final void dismiss(DialogFragment fragment){
+        if(fragment == null){
+            return;
+        }
+        try {
+            fragment.dismissAllowingStateLoss();
+        }catch (Exception e){
+            CrashDefendKit.onCrash(DFragmentUtils.class, e);
+        }
+    }
+}
