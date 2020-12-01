@@ -729,7 +729,7 @@ public class CApplication extends MultiDexApplication {
     }
 }
 ```
-#### 7.8 自定义回调防护，如MTOP回调
+#### 7.8 自定义回调防护，如网络回调
 
 
 #### 7.9 更多防护效果，如Touch、Attach、Detach事件等，可参考主动防护功能，根据业务需求进行定制。
