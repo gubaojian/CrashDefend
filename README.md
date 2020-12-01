@@ -7,7 +7,8 @@
 #### 1.1 什么是主动安全防护技术
       主动安全防护是一种在Android编译时对类字节码进行处理，插入防护代码，防止应用崩溃主动安全防护一种技术。
 #### 1.2 主动安全防护的技术流程
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/2964/1605510803440-270c8355-d780-495f-8604-7c864abfa229.png#align=left&display=inline&height=250&margin=%5Bobject%20Object%5D&name=image.png&originHeight=500&originWidth=1586&size=268057&status=done&style=none&width=793)
+![image.png](https://raw.githubusercontent.com/gubaojian/crash-defend/main/docs/images/crash-defend-process.png)
+
 #### 1.3 主动安全防护示例子
 ##### 1.3.1 程序员写的原始代码
 ```java
@@ -55,7 +56,7 @@ public void testDefend() {
 #### 3.1 主动防护与被动捕获区别
 主动安全防护是针对常见性可忽略的异常进行防护，异常时程序主功能正常运行，捕获到异常后正常上报。crash被动捕获是程序异常后，被系统中断捕获，然后回调到捕获，进行上报，上报完成后程序仍然会崩溃退出。 相同之处在于异常上报，不同之处前者程序正常运行，后者程序崩溃。
 #### 3.2 主动防护上报流程如下
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/2964/1605521855837-1d7d5c1b-29a1-455c-b5c1-31c9b0f64091.png#align=left&display=inline&height=337&margin=%5Bobject%20Object%5D&name=image.png&originHeight=710&originWidth=1436&size=286396&status=done&style=none&width=681)
+![image.png](https://raw.githubusercontent.com/gubaojian/crash-defend/main/docs/images/crash_defend_report.png)
 
 
 ## 四、主动安全使用说明
