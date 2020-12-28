@@ -13,25 +13,17 @@
 ##### 1.3.1 程序员写的原始代码
 ```java
 public void testDefend(){
-    new Thread(new Runnable() {
-        public void run() {
-            throw new RuntimeException("Hello World Crash");
-        }
-    }).start();
+    throw new RuntimeException("Hello World Crash");
 }
 ```
 ##### 1.3.2 安全防护实际运行代码
 ```java
 public void testDefend() {
-    new Thread(new Runnable() {
-        public void run() {
-            try {
-                throw new RuntimeException("Hello World Crash");
-            } catch (Throwable var2) {
-                CrashDefendSdk.onCatch(var2);
-            }
-        }
-    }).start();
+   try {
+          throw new RuntimeException("Hello World Crash");
+      } catch (Throwable var2) {
+          CrashDefendSdk.onCatch(var2);
+      }
 }
 ```
 
