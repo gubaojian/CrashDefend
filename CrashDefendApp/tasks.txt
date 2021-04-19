@@ -1,0 +1,605 @@
+
+> Configure project :app
+apply register defend transform plugin success 
+
+> Task :tasks
+
+------------------------------------------------------------
+Tasks runnable from root project
+------------------------------------------------------------
+
+WARNING: The specified Android SDK Build Tools version (30.0.1) is ignored, as it is below the minimum supported version (30.0.2) for Android Gradle Plugin 4.2.0-beta03.
+Android SDK Build Tools 30.0.2 will be used.
+To suppress this warning, remove "buildToolsVersion '30.0.1'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools.
+Android tasks
+-------------
+app:androidDependencies - Displays the Android dependencies of the project.
+CrashDefendKit:androidDependencies - Displays the Android dependencies of the project.
+app:signingReport - Displays the signing info for the base and test modules
+CrashDefendKit:signingReport - Displays the signing info for the base and test modules
+app:sourceSets - Prints out all the source sets defined in this project.
+CrashDefendKit:sourceSets - Prints out all the source sets defined in this project.
+
+Build tasks
+-----------
+app:assemble - Assemble main outputs for all the variants.
+CrashDefendKit:assemble - Assemble main outputs for all the variants.
+DefendCompiler:assemble - Assembles the outputs of this project.
+DefendPlugin:assemble - Assembles the outputs of this project.
+DefendReporter:assemble - Assembles the outputs of this project.
+app:assembleAndroidTest - Assembles all the Test applications.
+CrashDefendKit:assembleAndroidTest - Assembles all the Test applications.
+app:build - Assembles and tests this project.
+CrashDefendKit:build - Assembles and tests this project.
+DefendCompiler:build - Assembles and tests this project.
+DefendPlugin:build - Assembles and tests this project.
+DefendReporter:build - Assembles and tests this project.
+app:buildDependents - Assembles and tests this project and all projects that depend on it.
+CrashDefendKit:buildDependents - Assembles and tests this project and all projects that depend on it.
+DefendCompiler:buildDependents - Assembles and tests this project and all projects that depend on it.
+DefendPlugin:buildDependents - Assembles and tests this project and all projects that depend on it.
+DefendReporter:buildDependents - Assembles and tests this project and all projects that depend on it.
+app:buildNeeded - Assembles and tests this project and all projects it depends on.
+CrashDefendKit:buildNeeded - Assembles and tests this project and all projects it depends on.
+DefendCompiler:buildNeeded - Assembles and tests this project and all projects it depends on.
+DefendPlugin:buildNeeded - Assembles and tests this project and all projects it depends on.
+DefendReporter:buildNeeded - Assembles and tests this project and all projects it depends on.
+app:bundle - Assemble bundles for all the variants.
+DefendCompiler:classes - Assembles main classes.
+DefendPlugin:classes - Assembles main classes.
+DefendReporter:classes - Assembles main classes.
+app:clean - Deletes the build directory.
+CrashDefendKit:clean - Deletes the build directory.
+DefendCompiler:clean - Deletes the build directory.
+DefendPlugin:clean - Deletes the build directory.
+DefendReporter:clean - Deletes the build directory.
+app:cleanBuildCache - Deletes the build cache directory.
+CrashDefendKit:cleanBuildCache - Deletes the build cache directory.
+app:compileDebugAndroidTestSources
+CrashDefendKit:compileDebugAndroidTestSources
+app:compileDebugSources
+CrashDefendKit:compileDebugSources
+app:compileDebugUnitTestSources
+CrashDefendKit:compileDebugUnitTestSources
+app:compileReleaseSources
+CrashDefendKit:compileReleaseSources
+app:compileReleaseUnitTestSources
+CrashDefendKit:compileReleaseUnitTestSources
+CrashDefendKit:extractDebugAnnotations - Extracts Android annotations for the debug variant into the archive file
+CrashDefendKit:extractReleaseAnnotations - Extracts Android annotations for the release variant into the archive file
+DefendCompiler:jar - Assembles a jar archive containing the main classes.
+DefendPlugin:jar - Assembles a jar archive containing the main classes.
+DefendReporter:jar - Assembles a jar archive containing the main classes.
+DefendCompiler:testClasses - Assembles test classes.
+DefendPlugin:testClasses - Assembles test classes.
+DefendReporter:testClasses - Assembles test classes.
+
+Build Setup tasks
+-----------------
+init - Initializes a new Gradle build.
+wrapper - Generates Gradle wrapper files.
+
+Cleanup tasks
+-------------
+app:lintFix - Runs lint on all variants and applies any safe suggestions to the source code.
+CrashDefendKit:lintFix - Runs lint on all variants and applies any safe suggestions to the source code.
+
+Documentation tasks
+-------------------
+DefendPlugin:groovydoc - Generates Groovydoc API documentation for the main source code.
+DefendCompiler:javadoc - Generates Javadoc API documentation for the main source code.
+DefendPlugin:javadoc - Generates Javadoc API documentation for the main source code.
+DefendReporter:javadoc - Generates Javadoc API documentation for the main source code.
+
+Help tasks
+----------
+buildEnvironment - Displays all buildscript dependencies declared in root project 'CrashDefendApp'.
+app:buildEnvironment - Displays all buildscript dependencies declared in project ':app'.
+CrashDefendKit:buildEnvironment - Displays all buildscript dependencies declared in project ':CrashDefendKit'.
+DefendCompiler:buildEnvironment - Displays all buildscript dependencies declared in project ':DefendCompiler'.
+DefendPlugin:buildEnvironment - Displays all buildscript dependencies declared in project ':DefendPlugin'.
+DefendReporter:buildEnvironment - Displays all buildscript dependencies declared in project ':DefendReporter'.
+components - Displays the components produced by root project 'CrashDefendApp'. [incubating]
+app:components - Displays the components produced by project ':app'. [incubating]
+CrashDefendKit:components - Displays the components produced by project ':CrashDefendKit'. [incubating]
+DefendCompiler:components - Displays the components produced by project ':DefendCompiler'. [incubating]
+DefendPlugin:components - Displays the components produced by project ':DefendPlugin'. [incubating]
+DefendReporter:components - Displays the components produced by project ':DefendReporter'. [incubating]
+dependencies - Displays all dependencies declared in root project 'CrashDefendApp'.
+app:dependencies - Displays all dependencies declared in project ':app'.
+CrashDefendKit:dependencies - Displays all dependencies declared in project ':CrashDefendKit'.
+DefendCompiler:dependencies - Displays all dependencies declared in project ':DefendCompiler'.
+DefendPlugin:dependencies - Displays all dependencies declared in project ':DefendPlugin'.
+DefendReporter:dependencies - Displays all dependencies declared in project ':DefendReporter'.
+dependencyInsight - Displays the insight into a specific dependency in root project 'CrashDefendApp'.
+app:dependencyInsight - Displays the insight into a specific dependency in project ':app'.
+CrashDefendKit:dependencyInsight - Displays the insight into a specific dependency in project ':CrashDefendKit'.
+DefendCompiler:dependencyInsight - Displays the insight into a specific dependency in project ':DefendCompiler'.
+DefendPlugin:dependencyInsight - Displays the insight into a specific dependency in project ':DefendPlugin'.
+DefendReporter:dependencyInsight - Displays the insight into a specific dependency in project ':DefendReporter'.
+dependentComponents - Displays the dependent components of components in root project 'CrashDefendApp'. [incubating]
+app:dependentComponents - Displays the dependent components of components in project ':app'. [incubating]
+CrashDefendKit:dependentComponents - Displays the dependent components of components in project ':CrashDefendKit'. [incubating]
+DefendCompiler:dependentComponents - Displays the dependent components of components in project ':DefendCompiler'. [incubating]
+DefendPlugin:dependentComponents - Displays the dependent components of components in project ':DefendPlugin'. [incubating]
+DefendReporter:dependentComponents - Displays the dependent components of components in project ':DefendReporter'. [incubating]
+help - Displays a help message.
+app:help - Displays a help message.
+CrashDefendKit:help - Displays a help message.
+DefendCompiler:help - Displays a help message.
+DefendPlugin:help - Displays a help message.
+DefendReporter:help - Displays a help message.
+model - Displays the configuration model of root project 'CrashDefendApp'. [incubating]
+app:model - Displays the configuration model of project ':app'. [incubating]
+CrashDefendKit:model - Displays the configuration model of project ':CrashDefendKit'. [incubating]
+DefendCompiler:model - Displays the configuration model of project ':DefendCompiler'. [incubating]
+DefendPlugin:model - Displays the configuration model of project ':DefendPlugin'. [incubating]
+DefendReporter:model - Displays the configuration model of project ':DefendReporter'. [incubating]
+outgoingVariants - Displays the outgoing variants of root project 'CrashDefendApp'.
+app:outgoingVariants - Displays the outgoing variants of project ':app'.
+CrashDefendKit:outgoingVariants - Displays the outgoing variants of project ':CrashDefendKit'.
+DefendCompiler:outgoingVariants - Displays the outgoing variants of project ':DefendCompiler'.
+DefendPlugin:outgoingVariants - Displays the outgoing variants of project ':DefendPlugin'.
+DefendReporter:outgoingVariants - Displays the outgoing variants of project ':DefendReporter'.
+projects - Displays the sub-projects of root project 'CrashDefendApp'.
+app:projects - Displays the sub-projects of project ':app'.
+CrashDefendKit:projects - Displays the sub-projects of project ':CrashDefendKit'.
+DefendCompiler:projects - Displays the sub-projects of project ':DefendCompiler'.
+DefendPlugin:projects - Displays the sub-projects of project ':DefendPlugin'.
+DefendReporter:projects - Displays the sub-projects of project ':DefendReporter'.
+properties - Displays the properties of root project 'CrashDefendApp'.
+app:properties - Displays the properties of project ':app'.
+CrashDefendKit:properties - Displays the properties of project ':CrashDefendKit'.
+DefendCompiler:properties - Displays the properties of project ':DefendCompiler'.
+DefendPlugin:properties - Displays the properties of project ':DefendPlugin'.
+DefendReporter:properties - Displays the properties of project ':DefendReporter'.
+tasks - Displays the tasks runnable from root project 'CrashDefendApp' (some of the displayed tasks may belong to subprojects).
+app:tasks - Displays the tasks runnable from project ':app'.
+CrashDefendKit:tasks - Displays the tasks runnable from project ':CrashDefendKit'.
+DefendCompiler:tasks - Displays the tasks runnable from project ':DefendCompiler'.
+DefendPlugin:tasks - Displays the tasks runnable from project ':DefendPlugin'.
+DefendReporter:tasks - Displays the tasks runnable from project ':DefendReporter'.
+
+Install tasks
+-------------
+app:installDebug - Installs the Debug build.
+app:installDebugAndroidTest - Installs the android (on device) tests for the Debug build.
+CrashDefendKit:installDebugAndroidTest - Installs the android (on device) tests for the Debug build.
+app:uninstallAll - Uninstall all applications.
+CrashDefendKit:uninstallAll - Uninstall all applications.
+app:uninstallDebug - Uninstalls the Debug build.
+app:uninstallDebugAndroidTest - Uninstalls the android (on device) tests for the Debug build.
+CrashDefendKit:uninstallDebugAndroidTest - Uninstalls the android (on device) tests for the Debug build.
+app:uninstallRelease - Uninstalls the Release build.
+
+Publishing tasks
+----------------
+DefendPlugin:publish - Publishes all publications produced by this project.
+DefendPlugin:publishToMavenLocal - Publishes all Maven publications produced by this project to the local Maven cache.
+
+Upload tasks
+------------
+CrashDefendKit:uploadArchives - Uploads all artifacts belonging to configuration ':CrashDefendKit:archives'
+DefendCompiler:uploadArchives - Uploads all artifacts belonging to configuration ':DefendCompiler:archives'
+DefendPlugin:uploadArchives - Uploads all artifacts belonging to configuration ':DefendPlugin:archives'
+DefendReporter:uploadArchives - Uploads all artifacts belonging to configuration ':DefendReporter:archives'
+
+Verification tasks
+------------------
+app:check - Runs all checks.
+CrashDefendKit:check - Runs all checks.
+DefendCompiler:check - Runs all checks.
+DefendPlugin:check - Runs all checks.
+DefendReporter:check - Runs all checks.
+app:connectedAndroidTest - Installs and runs instrumentation tests for all flavors on connected devices.
+CrashDefendKit:connectedAndroidTest - Installs and runs instrumentation tests for all flavors on connected devices.
+app:connectedCheck - Runs all device checks on currently connected devices.
+CrashDefendKit:connectedCheck - Runs all device checks on currently connected devices.
+app:connectedDebugAndroidTest - Installs and runs the tests for debug on connected devices.
+CrashDefendKit:connectedDebugAndroidTest - Installs and runs the tests for debug on connected devices.
+app:deviceAndroidTest - Installs and runs instrumentation tests using all Device Providers.
+CrashDefendKit:deviceAndroidTest - Installs and runs instrumentation tests using all Device Providers.
+app:deviceCheck - Runs all device checks using Device Providers and Test Servers.
+CrashDefendKit:deviceCheck - Runs all device checks using Device Providers and Test Servers.
+app:lint - Runs lint on all variants.
+CrashDefendKit:lint - Runs lint on all variants.
+app:lintDebug - Runs lint on the Debug build.
+CrashDefendKit:lintDebug - Runs lint on the Debug build.
+app:lintRelease - Runs lint on the Release build.
+CrashDefendKit:lintRelease - Runs lint on the Release build.
+app:lintVitalRelease - Runs lint on just the fatal issues in the release build.
+app:test - Run unit tests for all variants.
+CrashDefendKit:test - Run unit tests for all variants.
+DefendCompiler:test - Runs the unit tests.
+DefendPlugin:test - Runs the unit tests.
+DefendReporter:test - Runs the unit tests.
+app:testDebugUnitTest - Run unit tests for the debug build.
+CrashDefendKit:testDebugUnitTest - Run unit tests for the debug build.
+app:testReleaseUnitTest - Run unit tests for the release build.
+CrashDefendKit:testReleaseUnitTest - Run unit tests for the release build.
+
+Other tasks
+-----------
+app:analyticsRecordingRelease
+app:analyzeDebugAndroidTestDependencies
+CrashDefendKit:analyzeDebugAndroidTestDependencies
+app:analyzeDebugDependencies
+CrashDefendKit:analyzeDebugDependencies
+app:analyzeDebugUnitTestDependencies
+CrashDefendKit:analyzeDebugUnitTestDependencies
+app:analyzeReleaseDependencies
+CrashDefendKit:analyzeReleaseDependencies
+app:analyzeReleaseUnitTestDependencies
+CrashDefendKit:analyzeReleaseUnitTestDependencies
+app:assembleDebug - Assembles main output for variant debug
+CrashDefendKit:assembleDebug - Assembles main output for variant debug
+app:assembleDebugAndroidTest - Assembles main output for variant debugAndroidTest
+CrashDefendKit:assembleDebugAndroidTest - Assembles main output for variant debugAndroidTest
+app:assembleDebugUnitTest - Assembles main output for variant debugUnitTest
+CrashDefendKit:assembleDebugUnitTest - Assembles main output for variant debugUnitTest
+app:assembleRelease - Assembles main output for variant release
+CrashDefendKit:assembleRelease - Assembles main output for variant release
+app:assembleReleaseUnitTest - Assembles main output for variant releaseUnitTest
+CrashDefendKit:assembleReleaseUnitTest - Assembles main output for variant releaseUnitTest
+app:buildDebugPreBundle
+app:buildReleasePreBundle
+app:bundleDebug - Assembles bundle for variant debug
+CrashDefendKit:bundleDebugAar - Assembles a bundle containing the library in debug.
+app:bundleDebugAndroidTestClasses
+app:bundleDebugClasses
+app:bundleDebugResources
+app:bundleDebugUnitTestClasses
+CrashDefendKit:bundleLibCompileToJarDebug
+CrashDefendKit:bundleLibCompileToJarDebugAndroidTest
+CrashDefendKit:bundleLibCompileToJarDebugUnitTest
+CrashDefendKit:bundleLibCompileToJarRelease
+CrashDefendKit:bundleLibCompileToJarReleaseUnitTest
+CrashDefendKit:bundleLibResDebug
+CrashDefendKit:bundleLibResRelease
+CrashDefendKit:bundleLibRuntimeToDirDebug
+CrashDefendKit:bundleLibRuntimeToDirRelease
+CrashDefendKit:bundleLibRuntimeToJarDebug
+CrashDefendKit:bundleLibRuntimeToJarRelease
+app:bundleRelease - Assembles bundle for variant release
+CrashDefendKit:bundleReleaseAar - Assembles a bundle containing the library in release.
+app:bundleReleaseClasses
+app:bundleReleaseResources
+app:bundleReleaseUnitTestClasses
+app:checkDebugAarMetadata
+app:checkDebugAndroidTestAarMetadata
+CrashDefendKit:checkDebugAndroidTestAarMetadata
+app:checkDebugAndroidTestDuplicateClasses
+CrashDefendKit:checkDebugAndroidTestDuplicateClasses
+app:checkDebugDuplicateClasses
+app:checkDebugManifest
+CrashDefendKit:checkDebugManifest
+app:checkReleaseAarMetadata
+app:checkReleaseDuplicateClasses
+app:checkReleaseManifest
+CrashDefendKit:checkReleaseManifest
+clean
+app:collectReleaseDependencies
+app:compileDebugAidl
+CrashDefendKit:compileDebugAidl
+app:compileDebugAndroidTestAidl
+CrashDefendKit:compileDebugAndroidTestAidl
+app:compileDebugAndroidTestJavaWithJavac
+CrashDefendKit:compileDebugAndroidTestJavaWithJavac
+app:compileDebugAndroidTestRenderscript
+CrashDefendKit:compileDebugAndroidTestRenderscript
+app:compileDebugAndroidTestShaders
+CrashDefendKit:compileDebugAndroidTestShaders
+app:compileDebugJavaWithJavac
+CrashDefendKit:compileDebugJavaWithJavac
+CrashDefendKit:compileDebugLibraryResources
+app:compileDebugRenderscript
+CrashDefendKit:compileDebugRenderscript
+app:compileDebugShaders
+CrashDefendKit:compileDebugShaders
+app:compileDebugUnitTestJavaWithJavac
+CrashDefendKit:compileDebugUnitTestJavaWithJavac
+DefendPlugin:compileGroovy - Compiles the main Groovy source.
+DefendCompiler:compileJava - Compiles main Java source.
+DefendPlugin:compileJava - Compiles main Java source.
+DefendReporter:compileJava - Compiles main Java source.
+app:compileLint
+CrashDefendKit:compileLint
+app:compileLintChecks
+CrashDefendKit:compileLintChecks
+app:compileReleaseAidl
+CrashDefendKit:compileReleaseAidl
+app:compileReleaseJavaWithJavac
+CrashDefendKit:compileReleaseJavaWithJavac
+CrashDefendKit:compileReleaseLibraryResources
+app:compileReleaseRenderscript
+CrashDefendKit:compileReleaseRenderscript
+app:compileReleaseShaders
+CrashDefendKit:compileReleaseShaders
+app:compileReleaseUnitTestJavaWithJavac
+CrashDefendKit:compileReleaseUnitTestJavaWithJavac
+DefendPlugin:compileTestGroovy - Compiles the test Groovy source.
+DefendCompiler:compileTestJava - Compiles test Java source.
+DefendPlugin:compileTestJava - Compiles test Java source.
+DefendReporter:compileTestJava - Compiles test Java source.
+app:compressDebugAndroidTestAssets
+CrashDefendKit:compressDebugAndroidTestAssets
+app:compressDebugAssets
+app:compressReleaseAssets
+app:configureReleaseDependencies
+app:consumeConfigAttr
+CrashDefendKit:consumeConfigAttr
+CrashDefendKit:copyDebugJniLibsProjectAndLocalJars
+CrashDefendKit:copyDebugJniLibsProjectOnly
+CrashDefendKit:copyReleaseJniLibsProjectAndLocalJars
+CrashDefendKit:copyReleaseJniLibsProjectOnly
+app:createDebugCompatibleScreenManifests
+CrashDefendKit:createFullJarDebug
+CrashDefendKit:createFullJarRelease
+app:createMockableJar
+CrashDefendKit:createMockableJar
+app:createReleaseCompatibleScreenManifests
+CrashDefendKit:desugarDebugAndroidTestFileDependencies
+app:dexBuilderDebug
+app:dexBuilderDebugAndroidTest
+CrashDefendKit:dexBuilderDebugAndroidTest
+app:dexBuilderRelease
+CrashDefendKit:exportDebugConsumerProguardFiles
+CrashDefendKit:exportReleaseConsumerProguardFiles
+app:extractApksForDebug
+app:extractApksForRelease
+app:extractDebugNativeDebugMetadata
+app:extractDebugNativeSymbolTables
+app:extractDeepLinksDebug
+CrashDefendKit:extractDeepLinksDebug
+app:extractDeepLinksRelease
+CrashDefendKit:extractDeepLinksRelease
+app:extractProguardFiles
+CrashDefendKit:extractProguardFiles
+app:extractReleaseNativeDebugMetadata
+app:extractReleaseNativeSymbolTables
+app:generateDebugAndroidTestAssets
+CrashDefendKit:generateDebugAndroidTestAssets
+app:generateDebugAndroidTestBuildConfig
+CrashDefendKit:generateDebugAndroidTestBuildConfig
+app:generateDebugAndroidTestResources
+CrashDefendKit:generateDebugAndroidTestResources
+app:generateDebugAndroidTestResValues
+CrashDefendKit:generateDebugAndroidTestResValues
+app:generateDebugAndroidTestSources
+CrashDefendKit:generateDebugAndroidTestSources
+app:generateDebugAssets
+CrashDefendKit:generateDebugAssets
+app:generateDebugBuildConfig
+CrashDefendKit:generateDebugBuildConfig
+app:generateDebugDependenciesForLint
+CrashDefendKit:generateDebugDependenciesForLint
+CrashDefendKit:generateDebugExternalPublicTxt
+app:generateDebugFeatureMetadata
+app:generateDebugFeatureTransitiveDeps
+app:generateDebugManifestClass
+app:generateDebugResources
+CrashDefendKit:generateDebugResources
+app:generateDebugResValues
+CrashDefendKit:generateDebugResValues
+CrashDefendKit:generateDebugRFile
+app:generateDebugSources
+CrashDefendKit:generateDebugSources
+app:generateDebugUnitTestAssets
+CrashDefendKit:generateDebugUnitTestAssets
+app:generateDebugUnitTestResources
+CrashDefendKit:generateDebugUnitTestResources
+app:generateDebugUnitTestSources
+CrashDefendKit:generateDebugUnitTestSources
+CrashDefendKit:generateDebugUnitTestStubRFile
+app:generateLintModuleInfo
+CrashDefendKit:generateLintModuleInfo
+app:generateReleaseAssets
+CrashDefendKit:generateReleaseAssets
+app:generateReleaseBuildConfig
+CrashDefendKit:generateReleaseBuildConfig
+app:generateReleaseDependenciesForLint
+CrashDefendKit:generateReleaseDependenciesForLint
+CrashDefendKit:generateReleaseExternalPublicTxt
+app:generateReleaseFeatureMetadata
+app:generateReleaseFeatureTransitiveDeps
+app:generateReleaseManifestClass
+app:generateReleaseResources
+CrashDefendKit:generateReleaseResources
+app:generateReleaseResValues
+CrashDefendKit:generateReleaseResValues
+CrashDefendKit:generateReleaseRFile
+app:generateReleaseSources
+CrashDefendKit:generateReleaseSources
+app:generateReleaseUnitTestAssets
+CrashDefendKit:generateReleaseUnitTestAssets
+app:generateReleaseUnitTestResources
+CrashDefendKit:generateReleaseUnitTestResources
+app:generateReleaseUnitTestSources
+CrashDefendKit:generateReleaseUnitTestSources
+CrashDefendKit:generateReleaseUnitTestStubRFile
+DefendCompiler:install - Installs the 'archives' artifacts into the local Maven repository.
+DefendPlugin:install - Installs the 'archives' artifacts into the local Maven repository.
+DefendReporter:install - Installs the 'archives' artifacts into the local Maven repository.
+app:javaPreCompileDebug
+CrashDefendKit:javaPreCompileDebug
+app:javaPreCompileDebugAndroidTest
+CrashDefendKit:javaPreCompileDebugAndroidTest
+app:javaPreCompileDebugUnitTest
+CrashDefendKit:javaPreCompileDebugUnitTest
+app:javaPreCompileRelease
+CrashDefendKit:javaPreCompileRelease
+app:javaPreCompileReleaseUnitTest
+CrashDefendKit:javaPreCompileReleaseUnitTest
+app:makeApkFromBundleForDebug
+app:makeApkFromBundleForRelease
+app:mergeDebugAndroidTestAssets
+CrashDefendKit:mergeDebugAndroidTestAssets
+app:mergeDebugAndroidTestGeneratedProguardFiles
+CrashDefendKit:mergeDebugAndroidTestGeneratedProguardFiles
+app:mergeDebugAndroidTestJavaResource
+CrashDefendKit:mergeDebugAndroidTestJavaResource
+app:mergeDebugAndroidTestJniLibFolders
+CrashDefendKit:mergeDebugAndroidTestJniLibFolders
+app:mergeDebugAndroidTestNativeLibs
+CrashDefendKit:mergeDebugAndroidTestNativeLibs
+app:mergeDebugAndroidTestResources
+CrashDefendKit:mergeDebugAndroidTestResources
+app:mergeDebugAndroidTestShaders
+CrashDefendKit:mergeDebugAndroidTestShaders
+app:mergeDebugAssets
+CrashDefendKit:mergeDebugAssets
+CrashDefendKit:mergeDebugConsumerProguardFiles
+app:mergeDebugGeneratedProguardFiles
+CrashDefendKit:mergeDebugGeneratedProguardFiles
+app:mergeDebugJavaResource
+CrashDefendKit:mergeDebugJavaResource
+app:mergeDebugJniLibFolders
+CrashDefendKit:mergeDebugJniLibFolders
+app:mergeDebugNativeDebugMetadata
+app:mergeDebugNativeLibs
+CrashDefendKit:mergeDebugNativeLibs
+app:mergeDebugResources
+CrashDefendKit:mergeDebugResources
+app:mergeDebugShaders
+CrashDefendKit:mergeDebugShaders
+CrashDefendKit:mergeDexDebugAndroidTest
+app:mergeDexRelease
+app:mergeExtDexDebug
+app:mergeExtDexDebugAndroidTest
+CrashDefendKit:mergeExtDexDebugAndroidTest
+app:mergeExtDexRelease
+app:mergeLibDexDebug
+app:mergeLibDexDebugAndroidTest
+app:mergeProjectDexDebug
+app:mergeProjectDexDebugAndroidTest
+app:mergeReleaseAssets
+CrashDefendKit:mergeReleaseAssets
+CrashDefendKit:mergeReleaseConsumerProguardFiles
+app:mergeReleaseGeneratedProguardFiles
+CrashDefendKit:mergeReleaseGeneratedProguardFiles
+app:mergeReleaseJavaResource
+CrashDefendKit:mergeReleaseJavaResource
+app:mergeReleaseJniLibFolders
+CrashDefendKit:mergeReleaseJniLibFolders
+app:mergeReleaseNativeDebugMetadata
+app:mergeReleaseNativeLibs
+CrashDefendKit:mergeReleaseNativeLibs
+app:mergeReleaseResources
+CrashDefendKit:mergeReleaseResources
+app:mergeReleaseShaders
+CrashDefendKit:mergeReleaseShaders
+app:optimizeReleaseResources
+app:packageDebug
+app:packageDebugAndroidTest
+CrashDefendKit:packageDebugAndroidTest
+CrashDefendKit:packageDebugAssets
+app:packageDebugBundle
+CrashDefendKit:packageDebugRenderscript
+CrashDefendKit:packageDebugResources
+app:packageDebugUniversalApk
+app:packageRelease
+CrashDefendKit:packageReleaseAssets
+app:packageReleaseBundle
+CrashDefendKit:packageReleaseRenderscript
+CrashDefendKit:packageReleaseResources
+app:packageReleaseUniversalApk
+app:parseDebugIntegrityConfig
+CrashDefendKit:parseDebugLocalResources
+app:parseReleaseIntegrityConfig
+CrashDefendKit:parseReleaseLocalResources
+app:preBuild
+CrashDefendKit:preBuild
+app:preDebugAndroidTestBuild
+CrashDefendKit:preDebugAndroidTestBuild
+app:preDebugBuild
+CrashDefendKit:preDebugBuild
+app:preDebugUnitTestBuild
+CrashDefendKit:preDebugUnitTestBuild
+prepareKotlinBuildScriptModel
+app:prepareLintJarForPublish
+CrashDefendKit:prepareLintJarForPublish
+app:preReleaseBuild
+CrashDefendKit:preReleaseBuild
+app:preReleaseUnitTestBuild
+CrashDefendKit:preReleaseUnitTestBuild
+app:processApplicationManifestDebugForBundle
+app:processApplicationManifestReleaseForBundle
+app:processDebugAndroidTestJavaRes
+CrashDefendKit:processDebugAndroidTestJavaRes
+app:processDebugAndroidTestManifest
+CrashDefendKit:processDebugAndroidTestManifest
+app:processDebugAndroidTestResources
+CrashDefendKit:processDebugAndroidTestResources
+app:processDebugJavaRes
+CrashDefendKit:processDebugJavaRes
+app:processDebugMainManifest
+app:processDebugManifest
+CrashDefendKit:processDebugManifest
+app:processDebugManifestForInstantApp
+app:processDebugManifestForPackage
+app:processDebugResources
+app:processDebugUnitTestJavaRes
+CrashDefendKit:processDebugUnitTestJavaRes
+app:processManifestDebugForFeature
+app:processManifestReleaseForFeature
+app:processReleaseJavaRes
+CrashDefendKit:processReleaseJavaRes
+app:processReleaseMainManifest
+app:processReleaseManifest
+CrashDefendKit:processReleaseManifest
+app:processReleaseManifestForInstantApp
+app:processReleaseManifestForPackage
+app:processReleaseResources
+app:processReleaseUnitTestJavaRes
+CrashDefendKit:processReleaseUnitTestJavaRes
+DefendCompiler:processResources - Processes main resources.
+DefendPlugin:processResources - Processes main resources.
+DefendReporter:processResources - Processes main resources.
+DefendCompiler:processTestResources - Processes test resources.
+DefendPlugin:processTestResources - Processes test resources.
+DefendReporter:processTestResources - Processes test resources.
+app:produceDebugBundleIdeListingFile
+app:produceReleaseBundleIdeListingFile
+app:resolveConfigAttr
+CrashDefendKit:resolveConfigAttr
+app:sdkReleaseDependencyData
+app:signDebugBundle
+app:signingConfigWriterDebug
+app:signingConfigWriterDebugAndroidTest
+CrashDefendKit:signingConfigWriterDebugAndroidTest
+app:signingConfigWriterRelease
+app:signReleaseBundle
+app:stripDebugDebugSymbols
+CrashDefendKit:stripDebugDebugSymbols
+app:stripReleaseDebugSymbols
+CrashDefendKit:stripReleaseDebugSymbols
+CrashDefendKit:syncDebugLibJars
+CrashDefendKit:syncReleaseLibJars
+app:transformClassesWithCom.efurture.wireless.defendForDebug
+app:transformClassesWithCom.efurture.wireless.defendForDebugAndroidTest
+app:transformClassesWithCom.efurture.wireless.defendForRelease
+app:validateSigningDebug
+app:validateSigningDebugAndroidTest
+CrashDefendKit:validateSigningDebugAndroidTest
+CrashDefendKit:verifyReleaseResources
+CrashDefendKit:writeDebugAarMetadata
+app:writeDebugAndroidTestSigningConfigVersions
+CrashDefendKit:writeDebugAndroidTestSigningConfigVersions
+app:writeDebugApplicationId
+app:writeDebugAppMetadata
+app:writeDebugModuleMetadata
+app:writeDebugSigningConfigVersions
+CrashDefendKit:writeReleaseAarMetadata
+app:writeReleaseApplicationId
+app:writeReleaseAppMetadata
+app:writeReleaseModuleMetadata
+app:writeReleaseSigningConfigVersions
+app:zipApksForDebug
+app:zipApksForRelease
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/6.7.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 699ms
+1 actionable task: 1 executed

@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.efurture.wireless.defend'
+
+
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.1"
+
+
+
+    defaultConfig {
+        applicationId "com.cainiao.wireless.crashsafe.app"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    packagingOptions {
+        pickFirst 'META-INF/androidx.customview_customview.version'
+        pickFirst 'META-INF/androidx.drawerlayout_drawerlayout.version'
+        pickFirst 'META-INF/androidx.interpolator_interpolator.version'
+        pickFirst 'META-INF/androidx.appcompat_appcompat.version'
+        pickFirst 'META-INF/androidx.loader_loader.version'
+        pickFirst 'META-INF/androidx.viewpager_viewpager.version'
+        pickFirst 'META-INF/androidx.cursoradapter_cursoradapter.version'
+        pickFirst 'META-INF/androidx.versionedparcelable_versionedparcelable.version'
+        pickFirst 'META-INF/androidx.fragment_fragment.version'
+        pickFirst 'META-INF/androidx.**.version'
+        pickFirst 'META-INF/proguard/androidx-annotations.pro'
+    }
+}
+
+
+ext {
+    defendConfigFiles =["defend.xml"]
+}
+
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api "androidx.legacy:legacy-support-v4:1.0.0"
+    api "androidx.appcompat:appcompat:1.1.0"
+    api "androidx.recyclerview:recyclerview:1.1.0"
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.fragment:fragment:1.0.0'
+    api 'com.google.android.material:material:1.0.0-rc01'
+    api 'androidx.navigation:navigation-fragment:2.0.0-rc02'
+    api 'androidx.navigation:navigation-ui:2.0.0-rc02'
+    api 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+
+
+
+    //api 'com.cainiao.wireless.crashdefendkit:crashdefendkit:0.0.2-SNAPSHOT'
+    api project(':CrashDefendSdk')
+    api 'com.efurture.wireless.defend:reporter:0.0.7'
+
+    implementation 'me.weishu:free_reflection:3.0.1'
+
+    implementation 'com.github.ChickenHook:RestrictionBypass:2.2'
+
+
+    compileOnly 'com.taobao.android:crashreporter:3.0.6.68@aar'
+    compileOnly 'com.taobao.android:ut-analytics:6.4.2.0'
+
+
+
+}

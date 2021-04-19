@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- debug包开启防护功能，默认仅release开启 -->
+    <defendOnDebug>true</defendOnDebug>
+
+    <!-- 关闭 所有防护功能 -->
+    <defendOff>false</defendOff>
+
+    <!-- defendCatch 默认类型 -->
+    <defendCatchClass>java.lang.Throwable</defendCatchClass>
+
+
+    <defendAuto scope="com.efurture.wireless.defend.app"/>
+
+    <!-- Application 启动防护 -->
+    <defendSubClass parent="android.app.Application" scope="com.cainiao">
+        <defendMethod name="onCreate" />
+        <defendMethod name="onTerminate" />
+        <defendMethod name="onConfigurationChanged" />
+    </defendSubClass>
+
+
+    <!-- 首页点击事件防护， scope配置生效的包名范围，多个模块可配置多条记录 -->
+    <defendInterfaceImpl interface="android.view.View$OnClickListener" scope="com.efurture.wireless.defend.app">
+    </defendInterfaceImpl>
+
+
+
+
+
+    <!-- 首页点击事件防护， scope配置生效的包名范围，多个模块可配置多条记录 -->
+    <defendInterfaceImpl interface="android.view.View$OnClickListener" scope="com.efurture.wireless.defend.app">
+    </defendInterfaceImpl>
+
+
+    <!-- 我的模块点击事件防护 -->
+    <defendInterfaceImpl interface="android.view.View$OnClickListener" scope="com.efurture.wireless.defend.app">
+    </defendInterfaceImpl>
+
+    <!-- 事件分发防护， scope配置生效的包名范围 -->
+    <defendInterfaceImpl interface="android.view.Window$Callback" scope="com.efurture.wireless.defend.app">
+        <defendMethod name="dispatchTouchEvent" returnValue="false"/>
+    </defendInterfaceImpl>
+
+
+    <!-- Runnable任务防护， scope配置生效的包名范围-->
+    <defendInterfaceImpl interface="java.lang.Runnable" scope="com.efurture.wireless.defend.app">
+    </defendInterfaceImpl>
+
+    <!-- Handler.Callback 防护， scope配置生效的包名范围 -->
+    <defendInterfaceImpl interface="android.os.Handler$Callback" scope="com.efurture.wireless.defend.app">
+    </defendInterfaceImpl>
+
+    <!-- Handler实现防护 -->
+    <defendSubClass parent="android.os.Handler" scope="com.efurture.wireless.defend.app">
+        <defendMethod name="handleMessage"/>
+    </defendSubClass>
+
+
+    <!-- AsyncTask防护实现 -->
+    <defendSubClass parent="android.os.AsyncTask" scope="com.efurture.wireless.defend.app">
+        <defendMethod name="doInBackground"/>
+        <defendMethod name="onPostExecute"/>
+    </defendSubClass>
+
+    <!-- 线程防护，Thread/HandlerThread防护 -->
+
+
+    <!-- BroadcastReceiver 消息接收防护 -->
+    <defendSubClass parent="android.content.BroadcastReceiver" scope="com.cainiao.home.wireless.home">
+        <defendMethod name="onReceive"/>
+    </defendSubClass>
+
+
+    <!-- Activity关键性生命周期防护 -->
+    <defendSubClass parent="android.app.Activity" scope="com.efurture.wireless.defend.app">
+        <defendMethod name="onCreate"/>
+        <defendMethod name="onStart"/>
+        <defendMethod name="onResume"/>
+        <defendMethod name="onPause"/>
+        <defendMethod name="onStop"/>
+        <defendMethod name="onDestroy"/>
+        <defendMethod name="onNewIntent"/>
+        <defendMethod name="onSaveInstanceState"/>
+    </defendSubClass>
+
+
+
+    <!--- 默认常规防护，默认防护以上功能 -->
+    <defendAuto scope="com.efurture.wireless.defend.app"/>
+
+
+    <!--RecyclerView 部分异常防护 -->
+    <defendClass class="android.support.v7.widget.RecyclerView">
+        <defendMethod name="setScrollState"/>
+        <defendMethod name="dispatchOnScrollStateChanged"/>
+        <defendMethod name="scrollToPosition"/>
+        <defendMethod name="onLayout"/>
+        <defendMethod name="dispatchLayout"/>
+        <defendMethod name="draw"/>
+        <defendMethod name="onAttachedToWindow"/>
+        <defendMethod name="removeAnimatingView"/>
+    </defendClass>
+
+    <!-- LinearLayoutManager 部分布局异常防护 -->
+    <defendClass class="android.support.v7.widget.LinearLayoutManager">
+        <defendMethod name="scrollBy" returnValue="0"/>
+        <defendMethod name="layoutChunk" />
+        <defendMethod name="onLayoutChildren"/>
+    </defendClass>
+
+
+    <!-- DefaultItemAnimator runPendingAnimations异常防护 -->
+    <defendClass class="android.support.v7.widget.DefaultItemAnimator">
+        <defendMethod name="runPendingAnimations"/>
+    </defendClass>
+
+    <!-- AndroidX ForceStopRunnable异常防护 -->
+    <defendClass class="androidx.work.impl.utils.ForceStopRunnable" >
+        <defendMethod name="run"/>
+    </defendClass>
+
+    <!-- RecyclerView 后台获取异常防护 -->
+    <defendClass class="android.support.v7.widget.GapWorker">
+        <defendMethod name="run"/>
+    </defendClass>
+
+
+    <!-- 未来扩展, 拦截特定方法调用， 增加方法调用拦截 -->
+    <tryCatchMethodCall class="test.trycatchmethodcall.TryCatchMethodCallTest">
+        <defendMethod name="dangerMethod"></defendMethod>
+    </tryCatchMethodCall>
+
+    <!-- 方法调用拦截处理 -->
+    <redirectMethodCall class="test.redirectmethodcall.RedirectMethodCallTest" >
+        <defendMethod name="testVoidMethod"/>
+        <defendMethod name="testIntMethod"/>
+        <defendMethod name="testObjectMethod"/>
+    </redirectMethodCall>
+
+    <redirectMethodCall class="android.provider.Settings$Secure">
+        <defendMethod name="getString"/>
+    </redirectMethodCall>
+
+    <redirectMethodCall class="android.app.Activity">
+        <defendMethod name="startActivity"/>
+    </redirectMethodCall>
+
+
+    <!-- FIXME 子类方法调用的 try catch处理 -->
+
+
+
+    <!-- 打包测试： ./gradlew stop   ./gradlew assembleDebug    -->
+
+
+    <!-- asm 方法调用分析，加入潜在的防护代码进行防护    -->
+
+</resources>

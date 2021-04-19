@@ -1,0 +1,53 @@
+Compiled from "BizCallTest.java"
+public class com.efurture.wireless.defend.asm.BizCallTest {
+  public com.efurture.wireless.defend.asm.BizCallTest();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void doBiz();
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #3                  // String hello world
+       5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: new           #5                  // class com/efurture/wireless/defend/asm/ViewUtils
+      11: dup
+      12: invokespecial #6                  // Method com/efurture/wireless/defend/asm/ViewUtils."<init>":()V
+      15: astore_1
+      16: new           #7                  // class com/efurture/wireless/defend/asm/BizCallTest$1
+      19: dup
+      20: aload_0
+      21: invokespecial #8                  // Method com/efurture/wireless/defend/asm/BizCallTest$1."<init>":(Lcom/efurture/wireless/defend/asm/BizCallTest;)V
+      24: astore_2
+      25: aload_1
+      26: aload_2
+      27: invokevirtual #9                  // Method com/efurture/wireless/defend/asm/ViewUtils.post:(Ljava/lang/Runnable;)V
+      30: return
+
+  public void doBiz2();
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #3                  // String hello world
+       5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: new           #5                  // class com/efurture/wireless/defend/asm/ViewUtils
+      11: dup
+      12: invokespecial #6                  // Method com/efurture/wireless/defend/asm/ViewUtils."<init>":()V
+      15: astore_1
+      16: new           #10                 // class com/efurture/wireless/defend/asm/BizCallTest$2
+      19: dup
+      20: aload_0
+      21: invokespecial #11                 // Method com/efurture/wireless/defend/asm/BizCallTest$2."<init>":(Lcom/efurture/wireless/defend/asm/BizCallTest;)V
+      24: astore_2
+      25: aload_1
+      26: ldc           #12                 // String post
+      28: iconst_1
+      29: anewarray     #13                 // class java/lang/Object
+      32: dup
+      33: iconst_0
+      34: aload_2
+      35: aastore
+      36: invokestatic  #14                 // Method com/efurture/wireless/defend/asm/RedirectViewUtils.redirect:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
+      39: pop
+      40: return
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.efurture.wireless.defend.app.FirstFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_first_fragment"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/button_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/npe_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Click NPE Test"/>
+    <Button
+        android:id="@+id/run_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Activity Runnable Test"/>
+
+
+    <Button
+        android:id="@+id/view_run_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="View Post Runnable Test"/>
+
+
+
+    <Button
+        android:id="@+id/hander_post_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Handler Post Exception"/>
+
+
+    <Button
+        android:id="@+id/hander_send_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Handler handleMessage Exception"/>
+
+
+    <Button
+        android:id="@+id/async_bg_run_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="AsyncTask doBackground Exception"/>
+
+
+    <Button
+        android:id="@+id/async_ui_run_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="AsyncTask onPostExecute Exception"/>
+
+
+    <Button
+        android:id="@+id/thread_run_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Thread Run Exception"/>
+
+
+    <Button
+        android:id="@+id/third_party_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Third Party方法调用拦截"/>
+
+
+    <Button
+        android:id="@+id/activit_party_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Activity跳转方法调用拦截"/>
+
+
+
+</LinearLayout>

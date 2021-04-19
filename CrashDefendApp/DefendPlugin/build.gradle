@@ -1,0 +1,55 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+
+repositories {
+    google()
+    mavenCentral()
+    jcenter()
+}
+
+sourceSets {
+    main {
+        groovy.srcDirs = ['src/main/groovy']
+        java.srcDirs = ['src/main/java']
+        resources.srcDirs = ['src/main/resources']
+    }
+}
+
+dependencies {
+    implementation localGroovy()
+    implementation gradleApi()
+    implementation "com.android.tools.build:gradle:3.0.0"
+    implementation "commons-io:commons-io:2.4"
+    implementation 'org.javassist:javassist:3.27.0-GA'
+    implementation 'org.apache.commons:commons-lang3:3.8'
+    implementation 'com.efurture.wireless.defend:compiler:0.0.7'
+    implementation 'com.efurture.wireless.defend:reporter:0.0.7'
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+}
+
+
+
+
+group = 'com.efurture.wireless.defend'
+version = rootProject.ext.publichVersion
+
+def debugLocale = rootProject.ext.deployLocale
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if(debugLocale){
+                repository(url: uri(maven_local_url))
+            }else{
+                repository(url: maven_deploy_url){
+                    authentication(userName: maven_deploy_user, password: maven_deploy_password)
+                }
+            }
+            pom.artifactId = "plugin"
+        }
+    }
+}

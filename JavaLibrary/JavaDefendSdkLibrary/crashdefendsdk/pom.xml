@@ -3,9 +3,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.caoniao.wireless.defend</groupId>
+  <groupId>com.cainiao.wireless.defend</groupId>
   <artifactId>crashdefendsdk</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.6</version>
   <name>CrashDefendSdk</name>
   <packaging>jar</packaging>
 
@@ -73,8 +73,8 @@
   </build>
   <distributionManagement>
     <repository>
-      <id>releases</id>
-      <url>http://mvnrepo.alibaba-inc.com/mvn/releases</url>
+      <id>dev-yima</id>
+      <url>http://47.102.146.165:8081/artifactory/libs-sdk-guoguo</url>
     </repository>
     <snapshotRepository>
       <id>snapshots</id>

@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+    id 'maven'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+group = 'com.efurture.wireless.defend'
+version = rootProject.ext.publichVersion
+
+
+def deployLocale  = rootProject.ext.deployLocale
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if(deployLocale){
+                repository(url: uri(maven_local_url))
+            }else{
+                repository(url: maven_deploy_url){
+                    authentication(userName: maven_deploy_user, password: maven_deploy_password)
+                }
+            }
+            pom.artifactId = 'reporter'
+        }
+    }
+}
+
+
+

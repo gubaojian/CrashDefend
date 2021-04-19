@@ -1,0 +1,6 @@
+include ':DefendPlugin'
+include ':CrashDefendSdk'
+include ':app'
+rootProject.name = "CrashDefendApp"
+include ':DefendReporter'
+include ':DefendCompiler'

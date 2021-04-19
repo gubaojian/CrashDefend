@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cainiao.wireless.crashdefend.app">
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <application
+        android:name="com.efurture.wireless.defend.app.DApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:appComponentFactory="@string/app_name"
+        tools:replace="android:appComponentFactory">
+        <activity
+            android:name="com.efurture.wireless.defend.app.test.SplashTestActivity"
+            android:label="@string/title_activity_splash_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name="com.efurture.wireless.defend.app.TestThreeActivity"
+            android:label="@string/title_activity_test_three"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.efurture.wireless.defend.app.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

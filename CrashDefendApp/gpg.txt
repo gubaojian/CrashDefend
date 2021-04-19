@@ -1,0 +1,19 @@
+ 1103  gpg -s publish.sh
+ 1104  ls
+ 1105  gpg --version publish.sh.gpg
+ 1106  gpg -v publish.sh.gpg
+ 1107  gpg --help
+ 1108  gpg --detach-sign publish.sh
+ 1109  ls
+ 1110  gpg --version  publish.sh.sig publish.sh
+ 1111  gpg --verify  publish.sh.sig publish.sh
+ 1112  clear
+ 1113  gpg --list-keys
+ 1114  gpg --list-secret-keys
+ 1115  gpg --send-keys gubaojian
+ 1116  gpg --send-keys 2A5C4449FB14B3399E5DB7D4D5DEC4BFD7D9CBC4
+ 1117  gpg --send-keys rsa2048
+ 1118  gpg --fingerprint  2A5C4449FB14B3399E5DB7D4D5DEC4BFD7D9CBC4
+
+
+ gpg  --armor --detach-sign  --batch --passphrase 1234 app.zip
