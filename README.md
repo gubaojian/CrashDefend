@@ -57,7 +57,8 @@ public void testDefend() {
 #### 4.1、安全防护SDK引入及初始化
 ```groovy
 dependencies {
-   api 'com.cainiao.wireless.crashdefendkit:crashdefendkit:0.0.3@aar'
+    api 'com.efurture.wireless.defend:defendsdk:0.0.7'
+    api 'com.efurture.wireless.defend:reporter:0.0.7'
 }
 ```
 
@@ -73,12 +74,12 @@ CrashDefendInit.init(context)
 buildscript {
     dependencies {
         //插件依赖
-       classpath 'com.crashdefend.tools.build:gradleplugin:0.0.4'
+       classpath 'com.crashdefend.tools.build:plugin:0.0.7'
    }
 }
 apply plugin: 'com.android.application'
 //应用主动防护，在编译时对代码进行防护处理
-apply plugin: 'com.cainiao.crashdefend'
+apply plugin: 'com.efurture.wireless.defend'
 ```
 
 
